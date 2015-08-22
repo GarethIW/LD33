@@ -6,7 +6,7 @@ public class EnemyManager : ObjectPool
 {
     public static EnemyManager Instance;
     private CityManager theCity;
-    public float SpawnOffset=20f;
+    public float SpawnOffset = 20f;
     private float cityWidth;
 
     private Vector3 cityBoundary;
@@ -40,7 +40,7 @@ public class EnemyManager : ObjectPool
 
         cityBoundary.x = x * theCity.getWidth() * 2;
 
-        cityBoundary.z = z * theCity.getWidth() * 2;
+        cityBoundary.z = z * theCity.getDepth() * 2;
 
         StartCoroutine("Spawn");
 
@@ -58,13 +58,14 @@ public class EnemyManager : ObjectPool
 
         Vector3 spawnPoint = Vector3.one;
 
-        if (getSpawnPosition(player, ref spawnPoint)) ;
+        if (getSpawnPosition(player, ref spawnPoint))
+        {
 
 
-        instance.transform.position = spawnPoint;
+            instance.transform.position = spawnPoint;
 
-        //instance.SetActive(true);
-
+            //instance.SetActive(true);
+        }
         base.InitInstance(instance);
     }
 
@@ -80,23 +81,33 @@ public class EnemyManager : ObjectPool
         }
 
         Vector3 spawnPoint = new Vector3(0f, 0f, z);
-
-
-        if (player.transform.position.x + SpawnOffset < cityBoundary.x)
+        float seed = UnityEngine.Random.Range(0f, 2f);
+        if (seed == 0)
         {
-            spawnPoint.x = player.transform.position.x + SpawnOffset;
-            result = true;
+            if (player.transform.position.x + SpawnOffset < cityBoundary.x)
+            {
+                spawnPoint.x = player.transform.position.x + SpawnOffset;
+                result = true;
 
-        }
-        else if (player.transform.position.x - SpawnOffset < cityBoundary.x)
-        {
-            spawnPoint.x = player.transform.position.x - SpawnOffset;
-            result = true;
+            }
+            else
+            {
+                spawnPoint = Vector3.one;
+                result = false;
+            }
         }
         else
         {
-            spawnPoint = Vector3.one;
-            result = false;
+            if (player.transform.position.x - SpawnOffset < cityBoundary.x)
+            {
+                spawnPoint.x = player.transform.position.x - SpawnOffset;
+                result = true;
+            }
+            else
+            {
+                spawnPoint = Vector3.one;
+                result = false;
+            }
         }
 
         return result;
@@ -106,7 +117,7 @@ public class EnemyManager : ObjectPool
 
     IEnumerator Spawn()
     {
-        GameObject instance=GetOne("Man");
+        GameObject instance = GetOne("Man");
 
         if (instance != null)
         {
@@ -116,7 +127,7 @@ public class EnemyManager : ObjectPool
         yield return new WaitForSeconds(5f);
 
         StartCoroutine("Spawn");
-       
+
     }
 
 

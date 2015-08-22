@@ -20,15 +20,7 @@ public class Trooper : Enemy
 
 
 
-    // Use this for initialization
-    void Start()
-    {
-
-
-
-    }
-
-
+    
     protected override void Update()
     {
         gunLine.enabled = false;

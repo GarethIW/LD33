@@ -8,20 +8,8 @@ public class Tank : Enemy {
 
     protected override void Fire()
     {
-        
+        Debug.Log("See my awesome firepower mortals !!");
     }
 
-    // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	protected override void Update () {
-
-        base.Update();
-
-
-	
-	}
+    
 }

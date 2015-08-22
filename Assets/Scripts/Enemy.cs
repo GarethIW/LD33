@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using ParticlePlayground;
 
 public abstract class Enemy : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public abstract class Enemy : MonoBehaviour
     float coolDownTimer = 0f;
     float firerate = 0.15f;
     Rigidbody enemyRigidBody;
+    private PlaygroundEventC playgroundEvent;
+    public float Health = 10f;
 
     public virtual void Awake()
     {
@@ -25,11 +28,35 @@ public abstract class Enemy : MonoBehaviour
     }
 
 
+    void OnEvent(PlaygroundEventParticle particle)
+    {
+        if (this == null) return;
+        if (particle.collisionCollider.gameObject == this.gameObject)
+        {
+            Health -= 0.001f;
+            if (Random.Range(0, 500) == 0)
+            {
+                var fire = FireManager.Instance.GetOne("Fire");
+                if (fire != null)
+                {
+                    fire.transform.position = transform.position +
+                                              new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.25f, 0.25f), -0.01f);
+                    fire.GetComponent<Fire>().Init();
+                    fire.transform.SetParent(transform);
+                }
+            }
+        }
+    }
+
+
+
+
 
     // Use this for initialization
     void Start()
     {
-
+        playgroundEvent = PlaygroundC.GetEvent(0, PlaygroundC.GetParticles(0));
+        playgroundEvent.particleEvent += OnEvent;
 
 
     }
@@ -39,6 +66,22 @@ public abstract class Enemy : MonoBehaviour
     {
 
         coolDownTimer += Time.deltaTime;
+
+
+       // if (Health < 10f)
+       // {
+      //      GetComponent<MeshRenderer>().material.SetColor("_Color", new Color(Health, Health, Health));
+      //  }
+
+        if (Health <= 0f)
+        {
+            gameObject.SetActive(false);
+        }
+
+
+
+
+
 
         if (checkRange(FireAtRange))
         {
@@ -57,6 +100,10 @@ public abstract class Enemy : MonoBehaviour
             transform.position += getMoveTowardsVector(transform.position, getExploringPoint());
 
         }
+
+
+
+
 
     }
 
