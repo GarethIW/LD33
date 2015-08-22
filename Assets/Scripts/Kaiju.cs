@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using ParticlePlayground;
 
 public class Kaiju : MonoBehaviour
 {
@@ -7,9 +8,13 @@ public class Kaiju : MonoBehaviour
 
     public bool CanClimb = false;
 
+    public float Depth = 0f;
+
     public bool isClimbing = false;
     public bool isOnGround = false;
     public GameObject climbingSkyscraperSection;
+
+    public Transform BreathTransform;
 
     SkeletonAnimation skeletonAnimation;
     public string idleAnimation = "empty";
@@ -26,18 +31,22 @@ public class Kaiju : MonoBehaviour
     string currentAnimation = "";
     bool hit = false;
     bool dead = false;
+    private float faceDir = 1f;
 
     private Rigidbody rigidBody;
+    private PlaygroundParticlesC breathParticles;
 
     void Start()
     {
         skeletonAnimation = GetComponent<SkeletonAnimation>();
         rigidBody = GetComponent<Rigidbody>();
+        breathParticles = PlaygroundC.GetParticles(0);
     }
 
     // Update is called once per frame
     void Update()
     {
+        Depth = ((int) (transform.position.z/4f))*2f;
 
         float x = Input.GetAxis("Horizontal");
         float absX = Mathf.Abs(x);
@@ -57,9 +66,15 @@ public class Kaiju : MonoBehaviour
             maxSpeed = 5f;
 
             if (x > 0)
+            {
                 skeletonAnimation.skeleton.FlipX = false;
+                faceDir = 1f;
+            }
             else if (x < 0)
+            {
                 skeletonAnimation.skeleton.FlipX = true;
+                faceDir = -1f;
+            }
 
             if (absX > 0.7f)
             {
@@ -99,8 +114,10 @@ public class Kaiju : MonoBehaviour
                 gameObject.layer = 11;
                 if (climbingSkyscraperSection != null)
                 {
-                    float dir = transform.position.x > climbingSkyscraperSection.transform.parent.position.x ? 1f : -1f;
-                    transform.position = new Vector3(climbingSkyscraperSection.transform.parent.position.x + (0.9f * dir), transform.position.y+0.1f, climbingSkyscraperSection.transform.position.z);
+                    float dir = transform.position.x > climbingSkyscraperSection.transform.parent.position.x ? -1f : 1f;
+                    if (dir == -1f) skeletonAnimation.skeleton.flipX = true;
+                    else skeletonAnimation.skeleton.flipX = false;
+                    transform.position = new Vector3(climbingSkyscraperSection.transform.parent.position.x + (0.9f * -dir), transform.position.y+0.1f, climbingSkyscraperSection.transform.position.z);
                     rigidBody.AddForce(0f, climbVelocity, 0f, ForceMode.Acceleration);
                 }
             }
@@ -116,8 +133,10 @@ public class Kaiju : MonoBehaviour
             {
                 if (climbingSkyscraperSection != null)
                 {
-                    float dir = transform.position.x > climbingSkyscraperSection.transform.parent.position.x ? 1f : -1f;
-                    transform.position = new Vector3(climbingSkyscraperSection.transform.parent.position.x + (0.9f * dir), transform.position.y, climbingSkyscraperSection.transform.position.z);
+                    float dir = transform.position.x > climbingSkyscraperSection.transform.parent.position.x ? -1f : 1f;
+                    if (dir == -1f) skeletonAnimation.skeleton.flipX = true;
+                    else skeletonAnimation.skeleton.flipX = false;
+                    transform.position = new Vector3(climbingSkyscraperSection.transform.parent.position.x + (0.9f * -dir), transform.position.y, climbingSkyscraperSection.transform.position.z);
                     rigidBody.AddForce(0f, climbVelocity, 0f, ForceMode.Acceleration);
 
                 }
@@ -136,6 +155,11 @@ public class Kaiju : MonoBehaviour
             rigidBody.velocity = rigidBody.velocity.normalized * maxSpeed;
         }
 
+        if (Input.GetButton("Breathe"))
+        {
+            for(int i=0;i<50;i++)
+                breathParticles.Emit(BreathTransform.position,new Vector3(Random.Range(4f, 12f) * faceDir, Random.Range(-1.9f, -2.1f), 0f));
+        }
     }
 
     void SetAnimation(string anim, bool loop)

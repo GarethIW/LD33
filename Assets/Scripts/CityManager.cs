@@ -20,6 +20,7 @@ public class CityManager : MonoBehaviour {
         roadsObject = new GameObject("Roads");
 
         roadsObject.transform.SetParent(transform);
+	    roadsObject.transform.localPosition = Vector3.zero;
 
         createBlock();
 
@@ -75,9 +76,10 @@ public class CityManager : MonoBehaviour {
 
     private static GameObject InsertInstance(float offset, GameObject prefab, GameObject parent, Vector3 insertionPosition)
     {
-        GameObject instance = (GameObject)Instantiate(prefab, insertionPosition, Quaternion.Euler(90, 0, 0));
+        GameObject instance = (GameObject)Instantiate(prefab, insertionPosition, Quaternion.Euler(0, 0, 0));
        
         instance.transform.SetParent(parent.transform);
+        instance.transform.localPosition = insertionPosition;
         return instance;
     }
 
