@@ -38,7 +38,7 @@ public class CityManager : MonoBehaviour {
 
     public void CreateRow(float offset,GameObject prefab,GameObject parent,float row,float tileMax,bool randomise)
     {
-        Vector3 insertionPosition = new Vector3(0f, 0f, row);
+        Vector3 insertionPosition = new Vector3(transform.position.x, 0f, row);
         GameObject instance;
         for (int i = 0; i <= tileMax; i++)
         {
