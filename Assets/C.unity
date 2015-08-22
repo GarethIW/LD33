@@ -255,10 +255,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 11403034, guid: 4fc1232585010a64ca014d25a4452567, type: 2}
-      propertyPath: Features.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 485942, guid: 4fc1232585010a64ca014d25a4452567, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -290,26 +286,6 @@ Prefab:
     - target: {fileID: 485942, guid: 4fc1232585010a64ca014d25a4452567, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 11403034, guid: 4fc1232585010a64ca014d25a4452567, type: 2}
-      propertyPath: CityDepth
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 11403034, guid: 4fc1232585010a64ca014d25a4452567, type: 2}
-      propertyPath: Features.Array.data[0]
-      value: 
-      objectReference: {fileID: 125200, guid: 300fdefd8ec19814fb0ea00eb787135c, type: 2}
-    - target: {fileID: 11403034, guid: 4fc1232585010a64ca014d25a4452567, type: 2}
-      propertyPath: Features.Array.data[1]
-      value: 
-      objectReference: {fileID: 162384, guid: d5b76299ac72e834e95b3c21ec530e36, type: 2}
-    - target: {fileID: 198456, guid: 4fc1232585010a64ca014d25a4452567, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198456, guid: 4fc1232585010a64ca014d25a4452567, type: 2}
-      propertyPath: m_TagString
-      value: City
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4fc1232585010a64ca014d25a4452567, type: 2}
@@ -1190,11 +1166,11 @@ MonoBehaviour:
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  localTime: .25931707
-  localDeltaTime: 0
+  localTime: 53.216301
+  localDeltaTime: 3.94918823
   previousActiveState: 0
-  simulationStarted: .25931707
-  loopExceeded: 0
+  simulationStarted: .34971714
+  loopExceeded: 1
   loopExceededOnParticle: -1
 --- !u!199 &1422105919
 ParticleSystemRenderer:
@@ -3046,11 +3022,11 @@ MonoBehaviour:
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  localTime: .258847088
-  localDeltaTime: 0
+  localTime: 53.216301
+  localDeltaTime: 3.94918823
   previousActiveState: 0
-  simulationStarted: .258847088
-  loopExceeded: 0
+  simulationStarted: .34971714
+  loopExceeded: 1
   loopExceededOnParticle: -1
 --- !u!199 &1440969123
 ParticleSystemRenderer:
