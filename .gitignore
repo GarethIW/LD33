@@ -31,3 +31,5 @@ Icon?
 ehthumbs.db
 [Tt]humbs.db
 
+*.suo
+.vs/UnityVS.LD33/v14/.suo
