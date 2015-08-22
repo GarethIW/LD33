@@ -88,6 +88,9 @@ public abstract class Enemy : MonoBehaviour
     Vector3 getMoveTowardsVector(Vector3 location, Vector3 target)
     {
         Vector3 targetLocation = (target - location).normalized * speed * Time.deltaTime;
+        targetLocation.y = 0f;
+       
+        
         return targetLocation;
     }
 
@@ -107,7 +110,7 @@ public abstract class Enemy : MonoBehaviour
         Vector3 pos;
         pos.x = center.x + radius * Mathf.Sin(ang * Mathf.Deg2Rad);
         pos.z = center.z + radius * Mathf.Cos(ang * Mathf.Deg2Rad);
-        pos.y = center.y;
+        pos.y = 0f;
         return pos;
     }
 
