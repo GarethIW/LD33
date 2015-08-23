@@ -45,7 +45,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &6502214
 BoxCollider:
@@ -141,7 +141,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveToRange: 20
   FireAtRange: 10
-  speed: 2
+  Speed: 5
+  FlameDamage: .100000001
+  Health: 10
+  ScorePoints: 10
+  FireRate: .150000006
+  MovementCoolDown: 1
+  coolDownTimer: 0
+  movementCooldowntimer: 0
+  DamageValue: 5
+  isOnFire: 0
+  isFleeing: 0
 --- !u!212 &21275996
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -174,7 +184,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 151328}

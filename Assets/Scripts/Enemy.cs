@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using ParticlePlayground;
 
 public abstract class Enemy : MonoBehaviour
@@ -14,6 +15,7 @@ public abstract class Enemy : MonoBehaviour
     public float Speed = 5f;
     public float FlameDamage = 0.1f;
     public float Health = 10f;
+    public float BaseHealth = 10f;
     public int ScorePoints = 10;
     public float FireRate = 0.15f;
     public float MovementCoolDown = 1f;
@@ -21,15 +23,18 @@ public abstract class Enemy : MonoBehaviour
     public float movementCooldowntimer = 0f;
     public int DamageValue = 5;
 
+    public bool isOnFire;
+    public bool isFleeing;
+    public bool isFiring;
+
+    private List<Fire> fires = new List<Fire>();
 
     protected AudioSource attackSound;
-    protected Vector3 currentMovementTarget;
+    public Vector3 currentMovementTarget;
 
 
     private Ray shootRay;
     private RaycastHit shootHit;
-
-
 
     private Rigidbody enemyRigidBody;
     private PlaygroundEventC playgroundEvent;
@@ -37,6 +42,15 @@ public abstract class Enemy : MonoBehaviour
     private CityManager theCity;
 
 
+
+    // Use this for initialization
+    void Start()
+    {
+        playgroundEvent = PlaygroundC.GetEvent(0, PlaygroundC.GetParticles(0));
+        playgroundEvent.particleEvent += OnEvent;
+
+
+    }
 
     public virtual void Awake()
     {
@@ -53,24 +67,25 @@ public abstract class Enemy : MonoBehaviour
         if (particle.collisionCollider.gameObject == this.gameObject)
         {
             Health -= FlameDamage;
-            Debug.Log(" OnEvent() Health:" + Health);
+            //Debug.Log(" OnEvent() Health:" + Health);
             if (Random.Range(0, 500) == 0)
             {
                 var fire = FireManager.Instance.GetOne("Fire");
                 if (fire != null)
                 {
-                    fire.transform.position = transform.position +
-                                              new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.25f, 0.25f), -0.01f);
-                    fire.GetComponent<Fire>().Init();
-                    fire.transform.SetParent(transform);
-                    escape();
+                    fire.GetComponent<Fire>().Init(transform, new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.25f, 0.25f), -0.01f));
+                    fires.Add(fire.GetComponent<Fire>());
+                    //fire.transform.position = transform.position + new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.25f, 0.25f), -0.01f);
+                    //fire.GetComponent<Fire>().Init();
+                    //fire.transform.SetParent(transform);
+                    Escape();
                 }
             }
         }
     }
 
 
-    protected void escape()
+    protected void Escape()
     {
 
         float directionToMove = 5f;
@@ -81,23 +96,16 @@ public abstract class Enemy : MonoBehaviour
 
         float newX = transform.position.x + directionToMove;
 
-        if (newX < theCity.getCityBoundryWidth() && newX > 0)
-        {
+        //if (newX < theCity.getCityBoundryWidth() && newX > 0)
+        //{
             currentMovementTarget = transform.position;
             currentMovementTarget.x = newX;
-            transform.position += getMoveTowardsVector(transform.position, currentMovementTarget);
-        }
+        //    //transform.position += getMoveTowardsVector(transform.position, currentMovementTarget);
+        //}
     }
 
 
-    // Use this for initialization
-    void Start()
-    {
-        playgroundEvent = PlaygroundC.GetEvent(0, PlaygroundC.GetParticles(0));
-        playgroundEvent.particleEvent += OnEvent;
-
-
-    }
+  
 
     // Update is called once per frame
     protected virtual void Update()
@@ -106,11 +114,16 @@ public abstract class Enemy : MonoBehaviour
         coolDownTimer += Time.deltaTime;
         movementCooldowntimer += Time.deltaTime;
 
-        if (transform.gameObject.activeSelf && GetComponentInChildren<Fire>() != null)
+        if (isOnFire)
         {
-
             Health -= FlameDamage;
-            Debug.Log("Update() Health" + Health);
+
+            //if (Random.Range(0, 200) == 0)
+            //{
+            //    getExploringPoint();
+            //}
+
+            //Debug.Log("Update() Health" + Health);
         }
 
         if (transform.gameObject.activeSelf && Health <= 0f)
@@ -118,46 +131,55 @@ public abstract class Enemy : MonoBehaviour
             GameManager.Instance.score += ScorePoints;
             GameManager.Instance.DamageCost += DamageValue;
 
-            Debug.Log("Update() Score " + GameManager.Instance.score);
+            //Debug.Log("Update() Score " + GameManager.Instance.score);
             gameObject.SetActive(false);
         }
 
-        if (checkRange(FireAtRange))
+        //if (checkRange(FireAtRange) && !isFleeing && !isOnFire)
+        //{
+        //    if (coolDownTimer >= FireRate)
+        //    {
+        //        coolDownTimer = 0f;
+        //        Fire();
+        //    }
+        //}
+        //else if (checkRange(MoveToRange))
+        //{
+        //    transform.position += getMoveTowardsVector(transform.position, player.transform.position);
+        //}
+        //else
+        //{
+
+        //    if (movementCooldowntimer >= MovementCoolDown)
+        //    {
+        //        currentMovementTarget = getExploringPoint();
+
+        //        movementCooldowntimer = 0f;
+        //    }
+
+        //    transform.position += getMoveTowardsVector(transform.position, currentMovementTarget);
+
+        //}
+
+        transform.position += getMoveTowardsVector(transform.position, currentMovementTarget);
+
+        int fireCount = 0;
+        for(int f=fires.Count-1;f>=0;f--)
         {
-            if (coolDownTimer >= FireRate)
+            if (fires[f].Health <= 0 || !fires[f].gameObject.activeSelf)
             {
-                coolDownTimer = 0f;
-                Fire();
+                fires.RemoveAt(f);
             }
-        }
-        else if (checkRange(MoveToRange))
-        {
-            transform.position += getMoveTowardsVector(transform.position, player.transform.position);
-        }
-        else
-        {
-
-            if (movementCooldowntimer >= MovementCoolDown)
-            {
-                currentMovementTarget = getExploringPoint();
-
-                movementCooldowntimer = 0f;
-            }
-
-            transform.position += getMoveTowardsVector(transform.position, currentMovementTarget);
-
+            else fireCount++;
         }
 
-
-
-
-
+        isOnFire = fireCount > 0;
     }
 
     protected abstract void Fire();
 
 
-    private bool checkRange(float range)
+    protected bool checkRange(float range)
     {
         bool result = false;
         shootRay.origin = transform.position;
@@ -215,7 +237,10 @@ public abstract class Enemy : MonoBehaviour
         return pos;
     }
 
-
+    public virtual void Init()
+    {
+        Health = BaseHealth;
+    }
 
 
 }

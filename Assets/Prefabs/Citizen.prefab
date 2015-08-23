@@ -12,7 +12,8 @@ GameObject:
   - 82: {fileID: 8265150}
   - 114: {fileID: 11447846}
   - 54: {fileID: 5459310}
-  - 65: {fileID: 6538656}
+  - 136: {fileID: 13646538}
+  - 114: {fileID: 11499680}
   m_Layer: 12
   m_Name: Citizen
   m_TagString: Untagged
@@ -27,8 +28,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157646}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .0199999996, y: -.0900000036, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 6.87908792, y: -.451716065, z: 9.82302856}
+  m_LocalScale: {x: .100000001, y: .100000001, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -45,20 +46,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 112
   m_CollisionDetection: 0
---- !u!65 &6538656
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 157646}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.02400005, y: .992325664, z: .503626645}
-  m_Center: {x: 0, y: .500931799, z: -.151813328}
 --- !u!82 &8265150
 AudioSource:
   m_ObjectHideFlags: 1
@@ -142,14 +131,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveToRange: 20
   FireAtRange: 5
-  Speed: 5
+  Speed: 1
   FlameDamage: .100000001
   Health: 10
+  BaseHealth: 10
   ScorePoints: 10
   FireRate: .150000006
   MovementCoolDown: .5
   coolDownTimer: 0
   movementCooldowntimer: 0
+  DamageValue: 5
+  isOnFire: 0
+  isFleeing: 0
+  isFiring: 0
+  currentMovementTarget: {x: 0, y: 0, z: 0}
+--- !u!114 &11499680
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23533285f9109854f87bf31d117a7d43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HandleOffset: {x: 0, y: 0, z: 0}
+  ThrowForce: 20
+  isBeingThrown: 0
+--- !u!136 &13646538
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157646}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: .0500000007
+  m_Height: .100000001
+  m_Direction: 1
+  m_Center: {x: 0, y: .512000024, z: 0}
 --- !u!212 &21267056
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -182,7 +204,27 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalScale.x
+      value: .100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalScale.y
+      value: .100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ThrowForce
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 157646}
