@@ -6,7 +6,7 @@ public class Trooper : Enemy
 
        
     LineRenderer gunLine;
-   
+    public int DamagePerShot = 1;
    
 
     public override void Awake()
@@ -40,6 +40,11 @@ public class Trooper : Enemy
         targetPosition.z += 0.15f;
 
         gunLine.SetPosition(1, targetPosition);
+
+       Kaiju kaiju= player.GetComponent<Kaiju>();
+
+        kaiju.hp -= DamagePerShot;
+
     }
 
     

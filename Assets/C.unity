@@ -1346,6 +1346,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8230852, guid: 4fc1232585010a64ca014d25a4452567, type: 2}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4fc1232585010a64ca014d25a4452567, type: 2}
   m_IsPrefabParent: 0
@@ -2796,16 +2800,16 @@ MonoBehaviour:
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
-  isReadyForThreadedCalculations: 1
+  isReadyForThreadedCalculations: 0
   prewarm: 0
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  localTime: 3.1301105
-  localDeltaTime: .667694569
+  localTime: 16.7051544
+  localDeltaTime: 1.23231506
   previousActiveState: 0
-  simulationStarted: 1.81520987
-  loopExceeded: 0
+  simulationStarted: .136917382
+  loopExceeded: 1
   loopExceededOnParticle: -1
 --- !u!199 &1422105919
 ParticleSystemRenderer:
@@ -4703,16 +4707,16 @@ MonoBehaviour:
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
-  isReadyForThreadedCalculations: 1
+  isReadyForThreadedCalculations: 0
   prewarm: 0
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  localTime: 3.1301105
-  localDeltaTime: .667694569
+  localTime: 16.7051544
+  localDeltaTime: 1.23231506
   previousActiveState: 0
-  simulationStarted: 1.81520987
-  loopExceeded: 0
+  simulationStarted: .136283174
+  loopExceeded: 1
   loopExceededOnParticle: -1
 --- !u!199 &1440969123
 ParticleSystemRenderer:
@@ -6350,3 +6354,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
+--- !u!1 &2048307933
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2048307934}
+  m_Layer: 0
+  m_Name: Citizen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2048307934
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2048307933}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.74939632, y: 1.6188916, z: 4.79584837}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11

@@ -163,6 +163,8 @@ public class EnemyManager : ObjectPool
 
         yield return new WaitForSeconds(2f);
         if (kaiju.hp>0) {
+
+            Debug.Log(" Spawn() Player Health" + kaiju.hp);
             StartCoroutine("Spawn");
         }
     }

@@ -4,6 +4,7 @@ using System.Collections;
 public class GameManager : MonoBehaviour {
 
     public int score;
+    public int DamageCost;
     public static GameManager Instance;
 
 	// Use this for initialization

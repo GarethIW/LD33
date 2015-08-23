@@ -143,10 +143,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveToRange: 20
   FireAtRange: 5
-  speed: 5
-  FireRate: .150000006
-  MovementCoolDown: 1
+  Speed: 5
+  FlameDamage: .100000001
   Health: 10
+  ScorePoints: 10
+  FireRate: .150000006
+  MovementCoolDown: .5
+  DamagePerShot: 1
 --- !u!120 &12044188
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -225,6 +228,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Volume
       value: .568000019
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: MovementCoolDown
+      value: .5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

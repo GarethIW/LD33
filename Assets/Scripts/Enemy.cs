@@ -102,19 +102,14 @@ public abstract class Enemy : MonoBehaviour
         coolDownTimer += Time.deltaTime;
         movementCooldowntimer += Time.deltaTime;
 
-        // if (Health < 10f)
-        // {
-        //      GetComponent<MeshRenderer>().material.SetColor("_Color", new Color(Health, Health, Health));
-        //  }
-
-        if (GetComponentInChildren<Fire>() != null&&transform.gameObject.activeInHierarchy)
+        if (transform.gameObject.activeSelf&&GetComponentInChildren<Fire>() != null)
         {
 
             Health -= FlameDamage;
             Debug.Log("Update() Health" + Health);
         }
 
-        if (Health <= 0f && transform.gameObject.activeInHierarchy)
+        if (transform.gameObject.activeSelf&&Health <= 0f)
         {
             GameManager.Instance.score += 5;
 
@@ -192,7 +187,7 @@ public abstract class Enemy : MonoBehaviour
 
     Vector3 getExploringPoint()
     {
-        Vector3 position = RandomPoint(transform.position, 0.2f);
+        Vector3 position = RandomPoint(transform.position, 1f);
 
 
 

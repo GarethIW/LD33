@@ -5,6 +5,9 @@ using ParticlePlayground;
 public class SkyscraperSection : MonoBehaviour
 {
     public float Health = 10f;
+    public int DamageCost = 1000;
+    public int Score = 5;
+
 
     private PlaygroundEventC playgroundEvent;
 
@@ -23,8 +26,13 @@ public class SkyscraperSection : MonoBehaviour
             GetComponent<MeshRenderer>().material.SetColor("_Color", new Color(Health,Health, Health));    
         }
 
-        if(Health<=0f)
+        if (Health <= 0f)
+        {
+
+            GameManager.Instance.DamageCost += DamageCost;
+            GameManager.Instance.score += Score;
             gameObject.SetActive(false);
+        }
     }
 
     void OnEvent(PlaygroundEventParticle particle)
