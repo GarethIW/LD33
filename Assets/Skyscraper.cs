@@ -19,16 +19,17 @@ public class Skyscraper : MonoBehaviour
             section.transform.SetParent(transform, false);
             section.transform.localPosition = new Vector3(0f,y,0f);
 	        y += 0.5f;
-	        if (i >= Height - 3)
-	        {
-                // Get rid of the climb trigger on the top section
-	            section.transform.GetChild(0).gameObject.SetActive(false);
-	        }
+	        //if (i >= Height - 3)
+	        //{
+         //       // Get rid of the climb trigger on the top section
+	        //    section.transform.GetChild(0).gameObject.SetActive(false);
+	        //}
 	    }
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	    
+	void Update ()
+	{
+       
 	}
 }
