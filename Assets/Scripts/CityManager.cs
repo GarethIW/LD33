@@ -3,8 +3,8 @@ using System.Collections;
 
 public class CityManager : MonoBehaviour {
 
-    public int CityWidth=10;
-    public int CityDepth = 10;
+    public  int CityWidth=10;
+    public  int CityDepth = 10;
     private int ColumnOffset=2;
     public GameObject RoadPrefab;
     public int Seed=4;
@@ -24,6 +24,16 @@ public class CityManager : MonoBehaviour {
 
         createBlock();
 
+    }
+
+    public int getWidth()
+    {
+        return CityWidth;
+    }
+
+    public int getDepth()
+    {
+        return CityDepth;
     }
 
     public void createBlock()
