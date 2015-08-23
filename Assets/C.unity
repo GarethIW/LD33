@@ -1024,15 +1024,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 492880, guid: 40a93b7cd47dc7e45984786abd486206, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 3.74939632
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 492880, guid: 40a93b7cd47dc7e45984786abd486206, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.6188916
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 492880, guid: 40a93b7cd47dc7e45984786abd486206, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 4.79584837
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 492880, guid: 40a93b7cd47dc7e45984786abd486206, type: 2}
       propertyPath: m_LocalRotation.x
@@ -2805,10 +2805,10 @@ MonoBehaviour:
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  localTime: 16.7051544
-  localDeltaTime: 1.23231506
+  localTime: 38.5468788
+  localDeltaTime: 3.17352295
   previousActiveState: 0
-  simulationStarted: .136917382
+  simulationStarted: 5.64043474
   loopExceeded: 1
   loopExceededOnParticle: -1
 --- !u!199 &1422105919
@@ -4712,10 +4712,10 @@ MonoBehaviour:
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  localTime: 16.7051544
-  localDeltaTime: 1.23231506
+  localTime: 38.5468788
+  localDeltaTime: 3.17352295
   previousActiveState: 0
-  simulationStarted: .136283174
+  simulationStarted: 5.64043474
   loopExceeded: 1
   loopExceededOnParticle: -1
 --- !u!199 &1440969123
@@ -6354,30 +6354,3 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
---- !u!1 &2048307933
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 2048307934}
-  m_Layer: 0
-  m_Name: Citizen
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2048307934
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2048307933}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.74939632, y: 1.6188916, z: 4.79584837}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11

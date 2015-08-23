@@ -135,15 +135,19 @@ public class EnemyManager : ObjectPool
         {
 
             GameObject instance;
-            int i = UnityEngine.Random.Range(0, 1);
+            int i = UnityEngine.Random.Range(0, 3);
 
-            if (i >= 0)
+            if (i == 0)
             {
                 instance = GetOne("Man");
             }
-            else
+            else if(i==1)
             {
                 instance = GetOne("Tank");
+            }
+            else
+            {
+                instance = GetOne("Citizen");
             }
 
 

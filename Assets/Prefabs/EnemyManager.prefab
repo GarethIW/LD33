@@ -44,6 +44,8 @@ MonoBehaviour:
     Amount: 10
   - Prefab: {fileID: 151328, guid: 704d389ccc1ff3a4294bd42f552c8b18, type: 2}
     Amount: 2
+  - Prefab: {fileID: 157646, guid: b1c5012ad48ea0d46afed4a00cd0f3e4, type: 2}
+    Amount: 10
   SpawnOffset: 10
 --- !u!1001 &100100000
 Prefab:
