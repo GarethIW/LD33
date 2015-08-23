@@ -35,7 +35,15 @@ Material:
         second:
           m_Texture: {fileID: 2800000, guid: df0ffcc7ed4d822408d84a34b9d048e0, type: 3}
           m_Scale: {x: 1, y: 1}
+<<<<<<< HEAD
           m_Offset: {x: .827100873, y: .36257869}
+=======
+<<<<<<< HEAD
+          m_Offset: {x: .630307794, y: .877041459}
+=======
+          m_Offset: {x: .0355366468, y: .0432220697}
+>>>>>>> origin/master
+>>>>>>> origin/master
       data:
         first:
           name: _Static

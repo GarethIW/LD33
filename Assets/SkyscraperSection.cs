@@ -18,9 +18,9 @@ public class SkyscraperSection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Health < 10f)
+        if (Health < 1f)
         {
-            GetComponent<MeshRenderer>().material.SetColor("_Color", new Color(Health,Health,Health));    
+            GetComponent<MeshRenderer>().material.SetColor("_Color", new Color(Health,Health, Health));    
         }
 
         if(Health<=0f)
@@ -38,10 +38,21 @@ public class SkyscraperSection : MonoBehaviour
                 var fire = FireManager.Instance.GetOne("Fire");
                 if (fire != null)
                 {
-                    fire.transform.position = transform.position +
-                                              new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.25f, 0.25f), -0.01f);
-                    fire.GetComponent<Fire>().Init();
+                    fire.GetComponent<Fire>().Init(transform, new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.25f, 0.25f), -0.01f));
                 }
+            }
+        }
+    }
+
+    public void ClimbedOn()
+    {
+        Health -= 0.1f;
+        if (Random.Range(0, 5) == 0)
+        {
+            var fire = FireManager.Instance.GetOne("Fire");
+            if (fire != null)
+            {
+                fire.GetComponent<Fire>().Init(transform, new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.25f, 0.25f), -0.01f));
             }
         }
     }

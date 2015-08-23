@@ -6,6 +6,9 @@ public class Fire : MonoBehaviour
 {
     public float Health = 1f;
 
+    public Transform Target;
+    public Vector3 Offset;
+
     private PlaygroundParticlesC fireParticles;
 
 	// Use this for initialization
@@ -17,6 +20,16 @@ public class Fire : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+	    if (Target != null)
+	    {
+	        transform.position = Target.position + Offset;
+	        if (!Target.gameObject.activeSelf)
+	        {
+	            Target = null;
+	            Health = 0f;
+	        }
+	    }
+
 	    for (int i = 0; i < 10; i++)
 	        fireParticles.Emit(transform.position);
 
@@ -28,5 +41,12 @@ public class Fire : MonoBehaviour
     {
         Health = 1f;
         gameObject.SetActive(true);
+    }
+    public void Init(Transform target, Vector3 offset)
+    {
+        Target = target;
+        Offset = offset;
+        transform.position = Target.position + Offset;
+        Init();
     }
 }
