@@ -41,6 +41,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SectionPrefab: {fileID: 188216, guid: 6d46d28bc2feafb438b15b302c627f29, type: 2}
   Height: 0
+  BaseMaterial: {fileID: 2100000, guid: 3d038919256ea2945a8046ff1d65327f, type: 2}
+  MidMaterial: {fileID: 2100000, guid: 4f7cbea1d4015154295a36f0ff604c89, type: 2}
+  TopMaterial: []
+  BillBoardMaterial: {fileID: 2100000, guid: e6662ee9929955a48905596248fefedb, type: 2}
+  BillBoardBoard: {fileID: 0}
+  BillBoardLogoMaterial: []
+  hasBillBoard: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -52,6 +59,22 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: BaseMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 3d038919256ea2945a8046ff1d65327f, type: 2}
+    - target: {fileID: 0}
+      propertyPath: MidMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f7cbea1d4015154295a36f0ff604c89, type: 2}
+    - target: {fileID: 0}
+      propertyPath: TopMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: df3bf9d9e21087647badbb5d8d5dbea8, type: 2}
+    - target: {fileID: 0}
+      propertyPath: BillBoardMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: e6662ee9929955a48905596248fefedb, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 173254}

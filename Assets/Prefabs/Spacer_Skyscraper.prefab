@@ -143,6 +143,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SectionPrefab: {fileID: 188216, guid: 6d46d28bc2feafb438b15b302c627f29, type: 2}
   Height: 0
+  BaseMaterial: {fileID: 2100000, guid: 3d038919256ea2945a8046ff1d65327f, type: 2}
+  MidMaterial: {fileID: 2100000, guid: 4f7cbea1d4015154295a36f0ff604c89, type: 2}
+  TopMaterial:
+  - {fileID: 2100000, guid: df3bf9d9e21087647badbb5d8d5dbea8, type: 2}
+  - {fileID: 2100000, guid: a46b34a3340a1dc40be3ec6d4ca62e8f, type: 2}
+  BillBoardMaterial: {fileID: 2100000, guid: e6662ee9929955a48905596248fefedb, type: 2}
+  BillBoardBoard: {fileID: 173728, guid: c33580c5daa51a142ba70e31b2bbabf9, type: 2}
+  BillBoardLogoMaterial:
+  - {fileID: 2100000, guid: ff57d3510a0fbae4bba517d48c233011, type: 2}
+  - {fileID: 2100000, guid: 7f2f7ff16895063439ce1bedeffa0d6b, type: 2}
+  - {fileID: 2100000, guid: 73ab6f773c1887449abd2f3162f2e846, type: 2}
+  hasBillBoard: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -150,6 +162,14 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: TopMaterial.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: BillBoardLogoMaterial.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_LocalRotation.x
       value: 0
@@ -170,6 +190,26 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: BaseMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 3d038919256ea2945a8046ff1d65327f, type: 2}
+    - target: {fileID: 0}
+      propertyPath: MidMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f7cbea1d4015154295a36f0ff604c89, type: 2}
+    - target: {fileID: 0}
+      propertyPath: TopMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: df3bf9d9e21087647badbb5d8d5dbea8, type: 2}
+    - target: {fileID: 0}
+      propertyPath: BillBoardMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: e6662ee9929955a48905596248fefedb, type: 2}
+    - target: {fileID: 0}
+      propertyPath: BillBoardBoard
+      value: 
+      objectReference: {fileID: 173728, guid: c33580c5daa51a142ba70e31b2bbabf9, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 162384}
