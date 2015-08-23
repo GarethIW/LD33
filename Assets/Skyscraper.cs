@@ -48,6 +48,7 @@ public class Skyscraper : MonoBehaviour
                 Material mat = TopMaterial[seed];
 
                 hasBillBoard=mat.name.Equals("ok-top2");
+                section.GetComponent<SkyscraperSection>().hasBillBoard=hasBillBoard;
 
                 renderer.sharedMaterial =mat;
 

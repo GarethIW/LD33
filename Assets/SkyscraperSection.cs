@@ -7,6 +7,22 @@ public class SkyscraperSection : MonoBehaviour
     public float Health = 10f;
     public int DamageCost = 1000;
     public int Score = 5;
+    public bool hasBillBoard = false;
+    public Material BaseDmgMaterial;
+    public Material MidDmgMaterial;
+    public Material TopDmgMaterialPlain;
+    public Material TopDmgMaterialBillBoard;
+    public Material BillBoardDmgMaterialTM;
+    public Material BillBoardDmgMaterialLD;
+    public Material BillBoardDmgMaterialSH;
+    public Material BillBoardWrkMaterialTM;
+    public Material BillBoardWrkMaterialLD;
+    public Material BillBoardWrkMaterialSH;
+    public Material BaseWrkMaterial;
+    public Material MidWrkMaterial;
+    public Material TopWrkMaterialPlain;
+    public Material TopWrkMaterialBillBoard;
+
 
 
     private PlaygroundEventC playgroundEvent;
@@ -16,15 +32,45 @@ public class SkyscraperSection : MonoBehaviour
     {
         playgroundEvent = PlaygroundC.GetEvent(0, PlaygroundC.GetParticles(0));
         playgroundEvent.particleEvent += OnEvent;
+
     }
+
+
+    void ApplyMaterials(Material baseMaterial, Material midMaterial, Material topMaterial)
+    {
+        Renderer renderer = GetComponent<Renderer>();
+
+        Color colour = renderer.material.color;
+
+        string materialName = renderer.sharedMaterial.name;
+        if (materialName.Contains("base"))
+        {
+            renderer.sharedMaterial = baseMaterial;
+
+
+        }
+        else if (materialName.Contains("middle"))
+        {
+            renderer.sharedMaterial = midMaterial;
+        }
+        else if (materialName.Contains("top"))
+        {
+
+            renderer.sharedMaterial = topMaterial;
+
+
+        }
+        renderer.material.SetColor("_Color", colour);
+        Debug.Log("Changing material on " + transform.gameObject.name + " to " + renderer.sharedMaterial.name);
+
+    }
+
+
+
 
     // Update is called once per frame
     void Update()
     {
-        if (Health < 1f)
-        {
-            GetComponent<MeshRenderer>().material.SetColor("_Color", new Color(Health,Health, Health));    
-        }
 
         if (Health <= 0f)
         {
@@ -33,7 +79,94 @@ public class SkyscraperSection : MonoBehaviour
             GameManager.Instance.score += Score;
             gameObject.SetActive(false);
         }
+        else if (Health <= 0.3f)
+        {
+            // GetComponent<MeshRenderer>().material.SetColor("_Color", new Color(Health,Health, Health));  
+            Material topMaterial;
+
+            topMaterial = getTopMaterial();
+
+            ApplyMaterials(BaseDmgMaterial, MidDmgMaterial, topMaterial);
+            applyBillboardMaterial();
+
+
+        }
+        else if (Health <= 0.6f)
+        {
+            Material topMaterial;
+
+            topMaterial = getTopMaterial();
+
+
+
+            ApplyMaterials(BaseWrkMaterial, MidWrkMaterial, topMaterial);
+            applyBillboardMaterial();
+        }
+
+
     }
+
+    private Material getTopMaterial()
+    {
+        Material topMaterial;
+        if (hasBillBoard)
+        {
+            topMaterial = TopDmgMaterialBillBoard;
+        }
+        else
+        {
+            topMaterial = TopWrkMaterialPlain;
+        }
+
+        return topMaterial;
+    }
+
+    private void applyBillboardMaterial()
+    {
+
+
+
+        if (hasBillBoard)
+        {
+            Renderer billBoardRenderer = GetComponentInChildren<Renderer>();
+            Color colour = billBoardRenderer.material.color;
+            string name = billBoardRenderer.sharedMaterial.name;
+
+            if (name.Contains("dmg-TM"))
+            {
+                billBoardRenderer.sharedMaterial = BillBoardDmgMaterialTM;
+            }
+            else if (name.Contains("dmg-LD"))
+            {
+                billBoardRenderer.sharedMaterial = BillBoardDmgMaterialLD;
+            }
+            else if (name.Contains("dmg-SH"))
+            {
+                billBoardRenderer.sharedMaterial = BillBoardDmgMaterialSH;
+            }
+            else if (name.Contains("wrk-TM"))
+            {
+                billBoardRenderer.sharedMaterial = BillBoardWrkMaterialTM;
+            }
+            else if (name.Contains("wrk-LD"))
+            {
+                billBoardRenderer.sharedMaterial = BillBoardWrkMaterialLD;
+            }
+            else
+            {
+                billBoardRenderer.sharedMaterial = BillBoardWrkMaterialSH;
+            }
+            billBoardRenderer.material.SetColor("_Color", colour);
+
+        }
+
+
+
+
+
+
+    }
+
 
     void OnEvent(PlaygroundEventParticle particle)
     {
