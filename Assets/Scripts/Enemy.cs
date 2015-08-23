@@ -7,22 +7,36 @@ public abstract class Enemy : MonoBehaviour
 
     protected GameObject player;
 
-    Ray shootRay;
-    RaycastHit shootHit;
+
     public float MoveToRange = 20f;
     public float FireAtRange = 10f;
-    protected AudioSource attackSound;
-    public float speed = 5f;
 
-    float movementCooldowntimer = 0f;
-    Vector3 currentMovementTarget;
-    float coolDownTimer = 0f;
+    public float Speed = 5f;
+    public float FlameDamage = 0.1f;
+    public float Health = 10f;
+    public int ScorePoints = 10;
     public float FireRate = 0.15f;
     public float MovementCoolDown = 1f;
-    Rigidbody enemyRigidBody;
+    public float coolDownTimer = 0f;
+    public float movementCooldowntimer = 0f;
+    public int DamageValue = 5;
+
+
+    protected AudioSource attackSound;
+    protected Vector3 currentMovementTarget;
+
+
+    private Ray shootRay;
+    private RaycastHit shootHit;
+
+
+
+    private Rigidbody enemyRigidBody;
     private PlaygroundEventC playgroundEvent;
-    public float Health = 10f;
+
     private CityManager theCity;
+
+
 
     public virtual void Awake()
     {
@@ -38,8 +52,8 @@ public abstract class Enemy : MonoBehaviour
         if (this == null) return;
         if (particle.collisionCollider.gameObject == this.gameObject)
         {
-            Health -= 0.001f;
-            
+            Health -= FlameDamage;
+            Debug.Log(" OnEvent() Health:" + Health);
             if (Random.Range(0, 500) == 0)
             {
                 var fire = FireManager.Instance.GetOne("Fire");
@@ -56,7 +70,7 @@ public abstract class Enemy : MonoBehaviour
     }
 
 
-    void escape()
+    protected void escape()
     {
 
         float directionToMove = 5f;
@@ -67,13 +81,13 @@ public abstract class Enemy : MonoBehaviour
 
         float newX = transform.position.x + directionToMove;
 
-        if (newX < theCity.getCityBoundryWidth()&&newX>0)
+        if (newX < theCity.getCityBoundryWidth() && newX > 0)
         {
-           currentMovementTarget = transform.position;
+            currentMovementTarget = transform.position;
             currentMovementTarget.x = newX;
             transform.position += getMoveTowardsVector(transform.position, currentMovementTarget);
         }
-}
+    }
 
 
     // Use this for initialization
@@ -92,13 +106,19 @@ public abstract class Enemy : MonoBehaviour
         coolDownTimer += Time.deltaTime;
         movementCooldowntimer += Time.deltaTime;
 
-       // if (Health < 10f)
-       // {
-      //      GetComponent<MeshRenderer>().material.SetColor("_Color", new Color(Health, Health, Health));
-      //  }
-
-        if (Health <= 0f)
+        if (transform.gameObject.activeSelf && GetComponentInChildren<Fire>() != null)
         {
+
+            Health -= FlameDamage;
+            Debug.Log("Update() Health" + Health);
+        }
+
+        if (transform.gameObject.activeSelf && Health <= 0f)
+        {
+            GameManager.Instance.score += ScorePoints;
+            GameManager.Instance.DamageCost += DamageValue;
+
+            Debug.Log("Update() Score " + GameManager.Instance.score);
             gameObject.SetActive(false);
         }
 
@@ -120,10 +140,10 @@ public abstract class Enemy : MonoBehaviour
             if (movementCooldowntimer >= MovementCoolDown)
             {
                 currentMovementTarget = getExploringPoint();
-              
+
                 movementCooldowntimer = 0f;
             }
-            
+
             transform.position += getMoveTowardsVector(transform.position, currentMovementTarget);
 
         }
@@ -159,20 +179,20 @@ public abstract class Enemy : MonoBehaviour
 
     }
 
-    Vector3 getMoveTowardsVector(Vector3 location, Vector3 target)
+    protected Vector3 getMoveTowardsVector(Vector3 location, Vector3 target)
     {
-        Vector3 targetLocation = (target - location).normalized * speed * Time.deltaTime;
+        Vector3 targetLocation = (target - location).normalized * Speed * Time.deltaTime;
         targetLocation.y = 0f;
 
-        
-       
-        
+
+
+
         return targetLocation;
     }
 
-    Vector3 getExploringPoint()
+    protected Vector3 getExploringPoint()
     {
-        Vector3 position = RandomPoint(transform.position, 0.2f);
+        Vector3 position = RandomPoint(transform.position, 1f);
 
 
 
@@ -180,7 +200,7 @@ public abstract class Enemy : MonoBehaviour
         return position;
     }
 
-    Vector3 RandomPoint(Vector3 center, float radius)
+    protected Vector3 RandomPoint(Vector3 center, float radius)
     {
         float ang = Random.value * 360;
         Vector3 pos;

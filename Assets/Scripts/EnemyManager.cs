@@ -59,12 +59,7 @@ public class EnemyManager : ObjectPool
 
         instance.SetActive(false);
 
-      
-       
-
         Vector3 spawnPoint =getSpawnPosition();
-
-
 
         if (isValidSpawnPoint(spawnPoint,player))
         {
@@ -72,7 +67,6 @@ public class EnemyManager : ObjectPool
 
             instance.transform.position = spawnPoint;
 
-            //instance.SetActive(true);
         }
         base.InitInstance(instance);
     }
@@ -93,7 +87,7 @@ public class EnemyManager : ObjectPool
         float x = 0f;
 
         float seed = UnityEngine.Random.Range(0f, 1f);
-        Debug.Log("getSpawnPosition() seed " + seed);
+      
         if (seed > 0.5)
         {
             x = player.transform.position.x + SpawnOffset+UnityEngine.Random.Range(0,5);
@@ -132,45 +126,7 @@ public class EnemyManager : ObjectPool
 
 
 
-    //private bool getSpawnPosition(GameObject player, ref Vector3 spawnPosition)
-    //{
-
-    //    bool result = false;
-    //    float z = player.transform.position.z + UnityEngine.Random.Range(-0.5f, 0.5f);
-
-    //    if (z < 0)
-    //    {
-    //        z = 1;
-    //    }
-
-    //    Vector3 spawnPoint = new Vector3(0f, 0f, z);
-
-    //    if (player.transform.position.x + SpawnOffset < cityBoundary.x)
-    //    {
-    //        spawnPoint.x = player.transform.position.x + SpawnOffset;
-    //        result = true;
-
-    //    }
-
-
-    //    else if (player.transform.position.x - SpawnOffset < cityBoundary.x)
-    //    {
-    //        spawnPoint.x = player.transform.position.x - SpawnOffset;
-    //        result = true;
-    //    }
-    //    else
-    //    {
-    //        spawnPoint = Vector3.one;
-    //        result = false;
-    //    }
-
-    //    Debug.Log("getSpawnPosition() Spawning at x:" + spawnPoint.x);
-    //    Debug.Log("getSpawnPosition() Result" + result);
-    //    return result;
-
-    //}
-
-
+    
     IEnumerator Spawn()
     {
       
@@ -179,15 +135,19 @@ public class EnemyManager : ObjectPool
         {
 
             GameObject instance;
-            int i = UnityEngine.Random.Range(0, 1);
+            int i = UnityEngine.Random.Range(0, 3);
 
-            if (i >= 0)
+            if (i == 0)
             {
                 instance = GetOne("Man");
             }
-            else
+            else if(i==1)
             {
                 instance = GetOne("Tank");
+            }
+            else
+            {
+                instance = GetOne("Citizen");
             }
 
 
@@ -197,8 +157,8 @@ public class EnemyManager : ObjectPool
 
                 instance.transform.position = spawnPoint;
                 instance.SetActive(true);
-                Debug.Log("Spawn() Spawning at x:" + instance.transform.position.x);
-                Debug.Log("Spawn() Spawning at z:" + instance.transform.position.z);
+                //Debug.Log("Spawn() Spawning at x:" + instance.transform.position.x);
+               // Debug.Log("Spawn() Spawning at z:" + instance.transform.position.z);
                 //instance.SetActive(true);
             }
 
@@ -207,6 +167,8 @@ public class EnemyManager : ObjectPool
 
         yield return new WaitForSeconds(2f);
         if (kaiju.hp>0) {
+
+            Debug.Log(" Spawn() Player Health" + kaiju.hp);
             StartCoroutine("Spawn");
         }
     }
