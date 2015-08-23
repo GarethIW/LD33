@@ -12,6 +12,7 @@ public class CityManager : MonoBehaviour {
     private bool justPlacedRoad=false;
     private GameObject roadsObject;
     private int currentRow;
+    
 
 	// Use this for initialization
 	void Start ()
@@ -34,6 +35,19 @@ public class CityManager : MonoBehaviour {
     public int getDepth()
     {
         return CityDepth;
+    }
+
+    public float getCityBoundryWidth()
+    {
+
+      float  w= transform.position.x + CityWidth * 2;
+
+
+
+        return w;
+
+
+       
     }
 
     public void createBlock()

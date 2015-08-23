@@ -44,9 +44,9 @@ public class EnemyManager : ObjectPool
 
         //X of City * width in tiles * width of tiles.
 
-        cityBoundary.x = x * theCity.getWidth() * 2;
+        cityBoundary.x = x + theCity.getWidth() * 2;
 
-        cityBoundary.z = z * theCity.getDepth() * 2;
+        cityBoundary.z = z + theCity.getDepth() * 2;
 
         StartCoroutine("Spawn");
 

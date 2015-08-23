@@ -806,33 +806,6 @@ MonoBehaviour:
   boneName: upperarm1
   parentReference: {fileID: 0}
   transformLerpComplete: 0
---- !u!1 &805557077
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 805557078}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &805557078
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 805557077}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.0699997, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
 --- !u!1001 &827980630
 Prefab:
   m_ObjectHideFlags: 0
@@ -2601,15 +2574,15 @@ MonoBehaviour:
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
-  isReadyForThreadedCalculations: 1
+  isReadyForThreadedCalculations: 0
   prewarm: 0
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  localTime: 125.89711
-  localDeltaTime: 125.684402
+  localTime: 0
+  localDeltaTime: 40.2810593
   previousActiveState: 0
-  simulationStarted: .212709188
+  simulationStarted: .227476209
   loopExceeded: 0
   loopExceededOnParticle: -1
 --- !u!199 &1422105919
@@ -4508,15 +4481,15 @@ MonoBehaviour:
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
-  isReadyForThreadedCalculations: 1
+  isReadyForThreadedCalculations: 0
   prewarm: 0
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  localTime: 125.89711
-  localDeltaTime: 125.685112
+  localTime: 0
+  localDeltaTime: 40.2810593
   previousActiveState: 0
-  simulationStarted: .212000117
+  simulationStarted: .226834446
   loopExceeded: 0
   loopExceededOnParticle: -1
 --- !u!199 &1440969123

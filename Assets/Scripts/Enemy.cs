@@ -22,12 +22,14 @@ public abstract class Enemy : MonoBehaviour
     Rigidbody enemyRigidBody;
     private PlaygroundEventC playgroundEvent;
     public float Health = 10f;
+    private CityManager theCity;
 
     public virtual void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         attackSound = GetComponent<AudioSource>();
         enemyRigidBody = GetComponent<Rigidbody>();
+        theCity = GameObject.FindGameObjectWithTag("City").GetComponent<CityManager>();
     }
 
 
@@ -37,6 +39,7 @@ public abstract class Enemy : MonoBehaviour
         if (particle.collisionCollider.gameObject == this.gameObject)
         {
             Health -= 0.001f;
+            
             if (Random.Range(0, 500) == 0)
             {
                 var fire = FireManager.Instance.GetOne("Fire");
@@ -46,13 +49,31 @@ public abstract class Enemy : MonoBehaviour
                                               new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.25f, 0.25f), -0.01f);
                     fire.GetComponent<Fire>().Init();
                     fire.transform.SetParent(transform);
+                    escape();
                 }
             }
         }
     }
 
 
+    void escape()
+    {
 
+        float directionToMove = 5f;
+        if (player.transform.position.x > transform.position.x)
+        {
+            directionToMove = -5f;
+        }
+
+        float newX = transform.position.x + directionToMove;
+
+        if (newX < theCity.getCityBoundryWidth()&&newX>0)
+        {
+           currentMovementTarget = transform.position;
+            currentMovementTarget.x = newX;
+            transform.position += getMoveTowardsVector(transform.position, currentMovementTarget);
+        }
+}
 
 
     // Use this for initialization
