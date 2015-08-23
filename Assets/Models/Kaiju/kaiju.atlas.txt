@@ -1,0 +1,139 @@
+
+kaiju.png
+size: 4096,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+back-foot
+  rotate: true
+  xy: 1741, 68
+  size: 634, 284
+  orig: 634, 284
+  offset: 0, 0
+  index: -1
+back-hand
+  rotate: false
+  xy: 3445, 817
+  size: 388, 412
+  orig: 388, 412
+  offset: 0, 0
+  index: -1
+back-lower-arm
+  rotate: true
+  xy: 2313, 181
+  size: 509, 269
+  orig: 509, 269
+  offset: 0, 0
+  index: -1
+back-lower-leg
+  rotate: false
+  xy: 2579, 1339
+  size: 550, 643
+  orig: 550, 643
+  offset: 0, 0
+  index: -1
+back-upper-arm
+  rotate: false
+  xy: 2, 2
+  size: 528, 700
+  orig: 528, 700
+  offset: 0, 0
+  index: -1
+front-foot
+  rotate: true
+  xy: 2027, 56
+  size: 634, 284
+  orig: 634, 284
+  offset: 0, 0
+  index: -1
+front-hand
+  rotate: false
+  xy: 2977, 301
+  size: 388, 412
+  orig: 388, 412
+  offset: 0, 0
+  index: -1
+front-lower-arm
+  rotate: false
+  xy: 3131, 1231
+  size: 509, 269
+  orig: 509, 269
+  offset: 0, 0
+  index: -1
+front-lower-leg
+  rotate: true
+  xy: 1096, 152
+  size: 550, 643
+  orig: 550, 643
+  offset: 0, 0
+  index: -1
+front-upper-arm
+  rotate: false
+  xy: 2049, 1282
+  size: 528, 700
+  orig: 528, 700
+  offset: 0, 0
+  index: -1
+front-upper-leg
+  rotate: false
+  xy: 532, 66
+  size: 562, 636
+  orig: 562, 636
+  offset: 0, 0
+  index: -1
+head-bottom
+  rotate: true
+  xy: 2584, 210
+  size: 503, 391
+  orig: 503, 391
+  offset: 0, 0
+  index: -1
+head-top
+  rotate: false
+  xy: 3131, 1502
+  size: 694, 480
+  orig: 694, 480
+  offset: 0, 0
+  index: -1
+tail-segment-1
+  rotate: false
+  xy: 2581, 715
+  size: 469, 622
+  orig: 469, 622
+  offset: 0, 0
+  index: -1
+tail-segment-2
+  rotate: false
+  xy: 2049, 692
+  size: 530, 588
+  orig: 530, 588
+  offset: 0, 0
+  index: -1
+tail-segment-3
+  rotate: false
+  xy: 3052, 794
+  size: 391, 435
+  orig: 391, 435
+  offset: 0, 0
+  index: -1
+tail-segment-4
+  rotate: true
+  xy: 3827, 1696
+  size: 286, 231
+  orig: 286, 231
+  offset: 0, 0
+  index: -1
+tail-segment-5
+  rotate: false
+  xy: 3642, 1333
+  size: 171, 167
+  orig: 171, 167
+  offset: 0, 0
+  index: -1
+torso
+  rotate: true
+  xy: 2, 704
+  size: 1278, 2045
+  orig: 1278, 2045
+  offset: 0, 0
+  index: -1

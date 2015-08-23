@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Reflection;
 using ParticlePlayground;
 
 public class Kaiju : MonoBehaviour
@@ -15,6 +16,8 @@ public class Kaiju : MonoBehaviour
     public GameObject climbingSkyscraperSection;
 
     public Transform BreathTransform;
+
+    public Color Tint;
 
     SkeletonAnimation skeletonAnimation;
     public string idleAnimation = "empty";
@@ -33,6 +36,8 @@ public class Kaiju : MonoBehaviour
     bool dead = false;
     private float faceDir = 1f;
 
+    private Color prevTint;
+
     private Rigidbody rigidBody;
     private PlaygroundParticlesC breathParticles;
 
@@ -41,6 +46,10 @@ public class Kaiju : MonoBehaviour
         skeletonAnimation = GetComponent<SkeletonAnimation>();
         rigidBody = GetComponent<Rigidbody>();
         breathParticles = PlaygroundC.GetParticles(0);
+
+        //SkeletonUtility skelut = GetComponent<SkeletonUtility>();
+        skeletonAnimation.skeleton.slots.ForEach(sl=> {sl.SetColor(Tint);});
+        prevTint = Tint;
     }
 
     // Update is called once per frame
@@ -158,7 +167,13 @@ public class Kaiju : MonoBehaviour
         if (Input.GetButton("Breathe"))
         {
             for(int i=0;i<50;i++)
-                breathParticles.Emit(BreathTransform.position,new Vector3(Random.Range(4f, 12f) * faceDir, Random.Range(-1.9f, -2.1f), 0f));
+                breathParticles.Emit(BreathTransform.position,new Vector3(Random.Range(1f, 8f) * faceDir, Random.Range(-3.4f, -3.6f), 0f));
+        }
+
+        if (prevTint != Tint)
+        {
+            skeletonAnimation.skeleton.slots.ForEach(sl => { sl.SetColor(Tint); });
+            prevTint = Tint;
         }
     }
 
