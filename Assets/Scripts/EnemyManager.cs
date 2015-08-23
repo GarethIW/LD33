@@ -74,7 +74,6 @@ public class EnemyManager : ObjectPool
 
 
     private Vector3 getSpawnPosition()
-
     {
 
         float z = player.transform.position.z + UnityEngine.Random.Range(-0.5f, 0.5f);
@@ -90,11 +89,11 @@ public class EnemyManager : ObjectPool
       
         if (seed > 0.5)
         {
-            x = player.transform.position.x + SpawnOffset+UnityEngine.Random.Range(0,5);
+            x = player.transform.position.x + (SpawnOffset+UnityEngine.Random.Range(0,5));
         }
         else
         {
-            x = player.transform.position.x - SpawnOffset-UnityEngine.Random.Range(0, 5);
+            x = player.transform.position.x - (SpawnOffset+UnityEngine.Random.Range(0, 5));
         }
 
         if (x < 0) x = 0;
@@ -112,7 +111,8 @@ public class EnemyManager : ObjectPool
 
         float playerX = player.transform.position.x;
 
-        if ( ((playerX+SpawnOffset)<=spawnPoint.x)&& spawnPoint.x < cityBoundary.x && (((playerX - SpawnOffset) < spawnPoint.x) && spawnPoint.x > 0f))
+        //if ( ((playerX+SpawnOffset)<=spawnPoint.x)&& spawnPoint.x < cityBoundary.x && (((playerX - SpawnOffset) > spawnPoint.x) && spawnPoint.x > 0f))
+        if (spawnPoint.x < cityBoundary.x && spawnPoint.x > 0f)
         {
             result = true;
 
@@ -135,15 +135,15 @@ public class EnemyManager : ObjectPool
         {
 
             GameObject instance;
-            int i = UnityEngine.Random.Range(0, 3);
+            int i = UnityEngine.Random.Range(0, 10);
 
             if (i == 0)
             {
-                instance = GetOne("Man");
-            }
-            else if(i==1)
-            {
                 instance = GetOne("Tank");
+            }
+            else if(i<4)
+            {
+                instance = GetOne("Man");
             }
             else
             {
@@ -156,6 +156,7 @@ public class EnemyManager : ObjectPool
         {
 
                 instance.transform.position = spawnPoint;
+                instance.GetComponent<Enemy>().Init();
                 instance.SetActive(true);
                 //Debug.Log("Spawn() Spawning at x:" + instance.transform.position.x);
                // Debug.Log("Spawn() Spawning at z:" + instance.transform.position.z);
@@ -165,7 +166,7 @@ public class EnemyManager : ObjectPool
          
         }
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.1f);
         if (kaiju.hp>0) {
 
             Debug.Log(" Spawn() Player Health" + kaiju.hp);
