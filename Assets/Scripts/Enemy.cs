@@ -14,8 +14,11 @@ public abstract class Enemy : MonoBehaviour
     protected AudioSource attackSound;
     public float speed = 5f;
 
+    float movementCooldowntimer = 0f;
+    Vector3 currentMovementTarget;
     float coolDownTimer = 0f;
-    float firerate = 0.15f;
+    public float FireRate = 0.15f;
+    public float MovementCoolDown = 1f;
     Rigidbody enemyRigidBody;
     private PlaygroundEventC playgroundEvent;
     public float Health = 10f;
@@ -66,7 +69,7 @@ public abstract class Enemy : MonoBehaviour
     {
 
         coolDownTimer += Time.deltaTime;
-
+        movementCooldowntimer += Time.deltaTime;
 
        // if (Health < 10f)
        // {
@@ -85,7 +88,7 @@ public abstract class Enemy : MonoBehaviour
 
         if (checkRange(FireAtRange))
         {
-            if (coolDownTimer >= firerate)
+            if (coolDownTimer >= FireRate)
             {
                 coolDownTimer = 0f;
                 Fire();
@@ -97,7 +100,15 @@ public abstract class Enemy : MonoBehaviour
         }
         else
         {
-            transform.position += getMoveTowardsVector(transform.position, getExploringPoint());
+
+            if (movementCooldowntimer >= MovementCoolDown)
+            {
+                currentMovementTarget = getExploringPoint();
+              
+                movementCooldowntimer = 0f;
+            }
+            
+            transform.position += getMoveTowardsVector(transform.position, currentMovementTarget);
 
         }
 
@@ -136,6 +147,8 @@ public abstract class Enemy : MonoBehaviour
     {
         Vector3 targetLocation = (target - location).normalized * speed * Time.deltaTime;
         targetLocation.y = 0f;
+
+        
        
         
         return targetLocation;
@@ -143,7 +156,7 @@ public abstract class Enemy : MonoBehaviour
 
     Vector3 getExploringPoint()
     {
-        Vector3 position = RandomPoint(transform.position, 5);
+        Vector3 position = RandomPoint(transform.position, 0.2f);
 
 
 
@@ -158,6 +171,11 @@ public abstract class Enemy : MonoBehaviour
         pos.x = center.x + radius * Mathf.Sin(ang * Mathf.Deg2Rad);
         pos.z = center.z + radius * Mathf.Cos(ang * Mathf.Deg2Rad);
         pos.y = 0f;
+
+        if (pos.z < 0f)
+        {
+            pos.z = 0f;
+        }
         return pos;
     }
 

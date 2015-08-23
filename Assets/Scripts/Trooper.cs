@@ -34,7 +34,12 @@ public class Trooper : Enemy
         gunLine.enabled = true;
         attackSound.Play();
         gunLine.SetPosition(0, transform.position);
-        gunLine.SetPosition(1, player.transform.position);
+
+        Vector3 targetPosition = player.transform.position;
+        targetPosition.y = 1.2f+Random.Range(0f,1f);
+        targetPosition.z += 0.15f;
+
+        gunLine.SetPosition(1, targetPosition);
     }
 
     
