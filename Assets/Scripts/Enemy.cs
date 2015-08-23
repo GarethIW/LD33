@@ -81,11 +81,6 @@ public abstract class Enemy : MonoBehaviour
             gameObject.SetActive(false);
         }
 
-
-
-
-
-
         if (checkRange(FireAtRange))
         {
             if (coolDownTimer >= FireRate)

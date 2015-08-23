@@ -8,6 +8,7 @@ public class EnemyManager : ObjectPool
     private CityManager theCity;
     public float SpawnOffset = 10f;
     private float cityWidth;
+    private Kaiju kaiju;
     GameObject player;
     private Vector3 cityBoundary;
     // Use this for initialization
@@ -19,6 +20,8 @@ public class EnemyManager : ObjectPool
         theCity = GameObject.FindGameObjectWithTag("City").GetComponent<CityManager>();
 
         player = GameObject.FindGameObjectWithTag("Player");
+
+        kaiju = player.GetComponent<Kaiju>();
 
         cityWidth = theCity.getWidth();
 
@@ -57,7 +60,7 @@ public class EnemyManager : ObjectPool
         instance.SetActive(false);
 
       
-        Kaiju kaiju = player.GetComponent<Kaiju>();
+       
 
         Vector3 spawnPoint =getSpawnPosition();
 
@@ -175,7 +178,20 @@ public class EnemyManager : ObjectPool
         if (isValidSpawnPoint(spawnPoint, player))
         {
 
-            GameObject instance = GetOne("Man");
+            GameObject instance;
+            int i = UnityEngine.Random.Range(0, 1);
+
+            if (i >= 0)
+            {
+                instance = GetOne("Man");
+            }
+            else
+            {
+                instance = GetOne("Tank");
+            }
+
+
+           
             if (instance != null)
         {
 
@@ -189,10 +205,10 @@ public class EnemyManager : ObjectPool
          
         }
 
-        yield return new WaitForSeconds(5f);
-
-        StartCoroutine("Spawn");
-
+        yield return new WaitForSeconds(2f);
+        if (kaiju.hp>0) {
+            StartCoroutine("Spawn");
+        }
     }
 
 
