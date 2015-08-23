@@ -41,7 +41,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefabs:
   - Prefab: {fileID: 155232, guid: 42b9bd2f89187664a8d55333cc32af6d, type: 2}
-    Amount: 1
+    Amount: 10
+  - Prefab: {fileID: 151328, guid: 704d389ccc1ff3a4294bd42f552c8b18, type: 2}
+    Amount: 2
+  SpawnOffset: 20
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

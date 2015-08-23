@@ -14,17 +14,22 @@ public abstract class Enemy : MonoBehaviour
     protected AudioSource attackSound;
     public float speed = 5f;
 
+    float movementCooldowntimer = 0f;
+    Vector3 currentMovementTarget;
     float coolDownTimer = 0f;
-    float firerate = 0.15f;
+    public float FireRate = 0.15f;
+    public float MovementCoolDown = 1f;
     Rigidbody enemyRigidBody;
     private PlaygroundEventC playgroundEvent;
     public float Health = 10f;
+    private CityManager theCity;
 
     public virtual void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         attackSound = GetComponent<AudioSource>();
         enemyRigidBody = GetComponent<Rigidbody>();
+        theCity = GameObject.FindGameObjectWithTag("City").GetComponent<CityManager>();
     }
 
 
@@ -34,6 +39,7 @@ public abstract class Enemy : MonoBehaviour
         if (particle.collisionCollider.gameObject == this.gameObject)
         {
             Health -= 0.001f;
+            
             if (Random.Range(0, 500) == 0)
             {
                 var fire = FireManager.Instance.GetOne("Fire");
@@ -43,13 +49,31 @@ public abstract class Enemy : MonoBehaviour
                                               new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.25f, 0.25f), -0.01f);
                     fire.GetComponent<Fire>().Init();
                     fire.transform.SetParent(transform);
+                    escape();
                 }
             }
         }
     }
 
 
+    void escape()
+    {
 
+        float directionToMove = 5f;
+        if (player.transform.position.x > transform.position.x)
+        {
+            directionToMove = -5f;
+        }
+
+        float newX = transform.position.x + directionToMove;
+
+        if (newX < theCity.getCityBoundryWidth()&&newX>0)
+        {
+           currentMovementTarget = transform.position;
+            currentMovementTarget.x = newX;
+            transform.position += getMoveTowardsVector(transform.position, currentMovementTarget);
+        }
+}
 
 
     // Use this for initialization
@@ -66,7 +90,7 @@ public abstract class Enemy : MonoBehaviour
     {
 
         coolDownTimer += Time.deltaTime;
-
+        movementCooldowntimer += Time.deltaTime;
 
        // if (Health < 10f)
        // {
@@ -78,14 +102,9 @@ public abstract class Enemy : MonoBehaviour
             gameObject.SetActive(false);
         }
 
-
-
-
-
-
         if (checkRange(FireAtRange))
         {
-            if (coolDownTimer >= firerate)
+            if (coolDownTimer >= FireRate)
             {
                 coolDownTimer = 0f;
                 Fire();
@@ -97,7 +116,15 @@ public abstract class Enemy : MonoBehaviour
         }
         else
         {
-            transform.position += getMoveTowardsVector(transform.position, getExploringPoint());
+
+            if (movementCooldowntimer >= MovementCoolDown)
+            {
+                currentMovementTarget = getExploringPoint();
+              
+                movementCooldowntimer = 0f;
+            }
+            
+            transform.position += getMoveTowardsVector(transform.position, currentMovementTarget);
 
         }
 
@@ -136,6 +163,8 @@ public abstract class Enemy : MonoBehaviour
     {
         Vector3 targetLocation = (target - location).normalized * speed * Time.deltaTime;
         targetLocation.y = 0f;
+
+        
        
         
         return targetLocation;
@@ -143,7 +172,7 @@ public abstract class Enemy : MonoBehaviour
 
     Vector3 getExploringPoint()
     {
-        Vector3 position = RandomPoint(transform.position, 5);
+        Vector3 position = RandomPoint(transform.position, 0.2f);
 
 
 
@@ -158,6 +187,11 @@ public abstract class Enemy : MonoBehaviour
         pos.x = center.x + radius * Mathf.Sin(ang * Mathf.Deg2Rad);
         pos.z = center.z + radius * Mathf.Cos(ang * Mathf.Deg2Rad);
         pos.y = 0f;
+
+        if (pos.z < 0f)
+        {
+            pos.z = 0f;
+        }
         return pos;
     }
 
