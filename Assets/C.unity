@@ -138,6 +138,45 @@ MonoBehaviour:
   boneName: shin1
   parentReference: {fileID: 0}
   transformLerpComplete: 0
+--- !u!1 &94872487
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 94872489}
+  - 114: {fileID: 94872488}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &94872488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 94872487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8015c4b1e842ad147bd119028ae5a8a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &94872489
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 94872487}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.74939632, y: 1.6188916, z: 4.79584837}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
 --- !u!1 &226215788
 GameObject:
   m_ObjectHideFlags: 0
@@ -2574,15 +2613,15 @@ MonoBehaviour:
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
-  isReadyForThreadedCalculations: 0
+  isReadyForThreadedCalculations: 1
   prewarm: 0
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  localTime: 0
-  localDeltaTime: 40.2810593
+  localTime: 240.720078
+  localDeltaTime: 231.858002
   previousActiveState: 0
-  simulationStarted: .227476209
+  simulationStarted: .265547782
   loopExceeded: 0
   loopExceededOnParticle: -1
 --- !u!199 &1422105919
@@ -4481,15 +4520,15 @@ MonoBehaviour:
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
-  isReadyForThreadedCalculations: 0
+  isReadyForThreadedCalculations: 1
   prewarm: 0
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  localTime: 0
-  localDeltaTime: 40.2810593
+  localTime: 240.720078
+  localDeltaTime: 231.858002
   previousActiveState: 0
-  simulationStarted: .226834446
+  simulationStarted: .264623791
   loopExceeded: 0
   loopExceededOnParticle: -1
 --- !u!199 &1440969123
