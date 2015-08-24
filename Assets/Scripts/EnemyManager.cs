@@ -140,6 +140,10 @@ public class EnemyManager : ObjectPool
             if (i == 0)
             {
                 instance = GetOne("Tank");
+                if (CheckAroundFor(spawnPoint, 3f, "Tank"))
+                {
+                    instance = null;
+                }
             }
             else if(i<4)
             {
@@ -174,5 +178,22 @@ public class EnemyManager : ObjectPool
         }
     }
 
+    bool CheckAroundFor(Vector3 pos, float radius, string name)
+    {
+        bool found = false;
+        var instants = transform.FindChild(name);
+        if (instants == null) return false;
+
+        for (int i = 0; i < instants.childCount; i++)
+        {
+            if (instants.GetChild(i).gameObject.activeSelf)
+            {
+                if (Vector3.Distance(pos, instants.GetChild(i).transform.position) <= radius)
+                    found = true;
+            }
+        }
+
+        return found;
+    }
 
 }

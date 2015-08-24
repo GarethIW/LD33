@@ -101,7 +101,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 188216}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 100
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
@@ -356,6 +356,7 @@ Prefab:
       value: 
       objectReference: {fileID: 2100000, guid: 61db992309963b04cbd9b2af5667caeb, type: 2}
     - target: {fileID: 0}
+<<<<<<< HEAD
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 86f63b7d7ea04b54dbfa5e8d8e546c3f, type: 3}
@@ -367,6 +368,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_PlayOnAwake
       value: 0
+=======
+      propertyPath: m_Mass
+      value: 100
+>>>>>>> origin/master
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

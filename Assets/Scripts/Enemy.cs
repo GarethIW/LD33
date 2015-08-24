@@ -32,7 +32,9 @@ public abstract class Enemy : MonoBehaviour
     public bool isFleeing;
     public bool isFiring;
 
-    private List<Fire> fires = new List<Fire>();
+    public bool isOnFloor;
+
+    protected List<Fire> fires = new List<Fire>();
 
     protected AudioSource attackSound;
     public Vector3 currentMovementTarget;
@@ -151,6 +153,13 @@ public abstract class Enemy : MonoBehaviour
             GameManager.Instance.DamageCost += DamageValue;
             playDeathScream();
             //Debug.Log("Update() Score " + GameManager.Instance.score);
+
+            if (GetComponent<Citizen>() || GetComponent<Trooper>())
+            {
+                for (int i = 0; i < 50; i++)
+                    PlaygroundC.GetParticles(3).Emit(transform.position + new Vector3(0f, Random.Range(0f, 0.3f), 0f), Random.insideUnitSphere * 0.5f);
+            }
+
             gameObject.SetActive(false);
         }
 
@@ -270,12 +279,15 @@ public abstract class Enemy : MonoBehaviour
         male = Random.Range(0, 2);
     }
 
-    public void OnCollisionEnter(Collision collision)
+    public virtual void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.GetComponentInParent<Kaiju>()!=null)
         {
             //Debug.Log("Squished!");
             Health = 0f;
+
+            for(int i=0;i<50;i++)
+                PlaygroundC.GetParticles(3).Emit(transform.position + new Vector3(0f, Random.Range(0f,0.3f), 0f), Random.insideUnitSphere * 0.5f);
         }
     }
 
@@ -291,6 +303,12 @@ public abstract class Enemy : MonoBehaviour
                 fires.Add(fire.GetComponent<Fire>());
                 Escape();
             }
+        }
+
+        if (GetComponent<Citizen>() || GetComponent<Trooper>())
+        {
+            for (int i = 0; i < 50; i++)
+                PlaygroundC.GetParticles(3).Emit(transform.position + new Vector3(0f, Random.Range(0f, 0.3f), 0f), Random.insideUnitSphere * 0.5f);
         }
     }
 
