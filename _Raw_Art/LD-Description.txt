@@ -1,0 +1,28 @@
+By Gareth Williams (@garethiw), Carl Hughes (@devilqube), Paul Yendley (@gredgie) and Shaun Reed (@shaunjmr)
+
+Biologists remain baffled as to why it is so very angry at us, but the creature which many are labelling as a "daikaiju", is laying waste to the city as news cameras helplessly watch on.
+
+Controls:
+
+Cursors/Joypad stick - Movement
+Space/Joypad A - Jump
+C/Joypad X - Pick Up / Throw
+V/Joypad RT - Breathe Fire
+B/Joypad Y (mash!) - Climb Building
+
+
+- Incinerate and stomp your way through the military!
+- Climb up buildings to tear them down faster!
+- Rack up property damage totals and deaths, become the best daikaiju you can be!
+
+Tools Used:
+
+Unity/C#
+Photoshop CC
+Audacity
+Sonar
+
+
+
+
+
