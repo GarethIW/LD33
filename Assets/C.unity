@@ -3543,16 +3543,16 @@ MonoBehaviour:
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
-  isReadyForThreadedCalculations: 1
+  isReadyForThreadedCalculations: 0
   prewarm: 0
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  localTime: 8.10190201
-  localDeltaTime: 6.86428261
+  localTime: 14.7468281
+  localDeltaTime: .228410721
   previousActiveState: 0
-  simulationStarted: .278859854
-  loopExceeded: 0
+  simulationStarted: 6.45660973
+  loopExceeded: 1
   loopExceededOnParticle: -1
 --- !u!199 &1422105919
 ParticleSystemRenderer:
@@ -5450,16 +5450,16 @@ MonoBehaviour:
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
-  isReadyForThreadedCalculations: 1
+  isReadyForThreadedCalculations: 0
   prewarm: 0
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  localTime: 8.10190201
-  localDeltaTime: 6.86428261
+  localTime: 14.7468281
+  localDeltaTime: .228410721
   previousActiveState: 0
-  simulationStarted: .278145045
-  loopExceeded: 0
+  simulationStarted: 6.45660973
+  loopExceeded: 1
   loopExceededOnParticle: -1
 --- !u!199 &1440969123
 ParticleSystemRenderer:
