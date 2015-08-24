@@ -158,6 +158,29 @@ MonoBehaviour:
   Health: 1
   DamageCost: 1000
   Score: 5
+  hasBillBoard: 0
+  BaseDmgMaterial: {fileID: 2100000, guid: 7ffb47b0bd57d024ca24c5e9e1e56132, type: 2}
+  MidDmgMaterial: {fileID: 2100000, guid: feecd2ca93d175846990cf1b0985b1be, type: 2}
+  TopDmgMaterialPlain: {fileID: 2100000, guid: 2fb70ff2b8f038145aa889701c160d16, type: 2}
+  TopDmgMaterialBillBoard: {fileID: 2100000, guid: e89bee0f8fbad6c4bb154317cc0b60b1,
+    type: 2}
+  BillBoardDmgMaterialTM: {fileID: 2100000, guid: d9df0b7374accec45bff0ce073750eec,
+    type: 2}
+  BillBoardDmgMaterialLD: {fileID: 2100000, guid: 7d4d97d1415cf63449d4e05c67c960ce,
+    type: 2}
+  BillBoardDmgMaterialSH: {fileID: 2100000, guid: 93771626cfb248a46a230fe045525879,
+    type: 2}
+  BillBoardWrkMaterialTM: {fileID: 2100000, guid: 659c149ba77232b4983c09ff5c808d8e,
+    type: 2}
+  BillBoardWrkMaterialLD: {fileID: 2100000, guid: 715becd5f746b1845809c931cf518441,
+    type: 2}
+  BillBoardWrkMaterialSH: {fileID: 2100000, guid: 8e87d13c6196988489b99d18eaa90272,
+    type: 2}
+  BaseWrkMaterial: {fileID: 2100000, guid: a4f43430ba6820c4b9b2eb640e066e16, type: 2}
+  MidWrkMaterial: {fileID: 2100000, guid: 4766ac4fa559e8a499a080f5fe3c56cd, type: 2}
+  TopWrkMaterialPlain: {fileID: 2100000, guid: 692d96a62aa968742bcf5291e7a64fcd, type: 2}
+  TopWrkMaterialBillBoard: {fileID: 2100000, guid: 61db992309963b04cbd9b2af5667caeb,
+    type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -205,6 +228,62 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: .386000007
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: BaseDmgMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 7ffb47b0bd57d024ca24c5e9e1e56132, type: 2}
+    - target: {fileID: 0}
+      propertyPath: MidDmgMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: feecd2ca93d175846990cf1b0985b1be, type: 2}
+    - target: {fileID: 0}
+      propertyPath: TopDmgMaterialPlain
+      value: 
+      objectReference: {fileID: 2100000, guid: 2fb70ff2b8f038145aa889701c160d16, type: 2}
+    - target: {fileID: 0}
+      propertyPath: TopDmgMaterialBillBoard
+      value: 
+      objectReference: {fileID: 2100000, guid: e89bee0f8fbad6c4bb154317cc0b60b1, type: 2}
+    - target: {fileID: 0}
+      propertyPath: BillBoardDmgMaterialSH
+      value: 
+      objectReference: {fileID: 2100000, guid: 93771626cfb248a46a230fe045525879, type: 2}
+    - target: {fileID: 0}
+      propertyPath: BillBoardDmgMaterialTM
+      value: 
+      objectReference: {fileID: 2100000, guid: d9df0b7374accec45bff0ce073750eec, type: 2}
+    - target: {fileID: 0}
+      propertyPath: BillBoardDmgMaterialLD
+      value: 
+      objectReference: {fileID: 2100000, guid: 7d4d97d1415cf63449d4e05c67c960ce, type: 2}
+    - target: {fileID: 0}
+      propertyPath: BillBoardWrkMaterialLD
+      value: 
+      objectReference: {fileID: 2100000, guid: 715becd5f746b1845809c931cf518441, type: 2}
+    - target: {fileID: 0}
+      propertyPath: BillBoardWrkMaterialSH
+      value: 
+      objectReference: {fileID: 2100000, guid: 8e87d13c6196988489b99d18eaa90272, type: 2}
+    - target: {fileID: 0}
+      propertyPath: BillBoardWrkMaterialTM
+      value: 
+      objectReference: {fileID: 2100000, guid: 659c149ba77232b4983c09ff5c808d8e, type: 2}
+    - target: {fileID: 0}
+      propertyPath: BaseWrkMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: a4f43430ba6820c4b9b2eb640e066e16, type: 2}
+    - target: {fileID: 0}
+      propertyPath: MidWrkMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 4766ac4fa559e8a499a080f5fe3c56cd, type: 2}
+    - target: {fileID: 0}
+      propertyPath: TopWrkMaterialPlain
+      value: 
+      objectReference: {fileID: 2100000, guid: 692d96a62aa968742bcf5291e7a64fcd, type: 2}
+    - target: {fileID: 0}
+      propertyPath: TopWrkMaterialBillBoard
+      value: 
+      objectReference: {fileID: 2100000, guid: 61db992309963b04cbd9b2af5667caeb, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 188216}
