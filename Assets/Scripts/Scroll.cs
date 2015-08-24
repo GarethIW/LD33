@@ -87,7 +87,7 @@ public class Scroll : MonoBehaviour
         int c = 0;
         while (c < ItemsInStory)
         {
-            value += getStory() + " - ";
+            value += getStory() + "       -       ";
 
 
             c++;

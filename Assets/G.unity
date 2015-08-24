@@ -2063,15 +2063,15 @@ MonoBehaviour:
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
-  isReadyForThreadedCalculations: 1
+  isReadyForThreadedCalculations: 0
   prewarm: 0
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  localTime: 388.602936
-  localDeltaTime: 388.373016
+  localTime: .315737516
+  localDeltaTime: 0
   previousActiveState: 0
-  simulationStarted: .229905859
+  simulationStarted: .315737516
   loopExceeded: 0
   loopExceededOnParticle: -1
 --- !u!199 &543457199
@@ -3524,6 +3524,11 @@ MonoBehaviour:
   boneName: upperarm1
   parentReference: {fileID: 0}
   transformLerpComplete: 0
+--- !u!224 &737335665 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 22412006, guid: 64f2940d3e12c734a914fb6b9072543c,
+    type: 2}
+  m_PrefabInternal: {fileID: 2030691648}
 --- !u!1 &889265682
 GameObject:
   m_ObjectHideFlags: 0
@@ -3910,80 +3915,6 @@ Transform:
   - {fileID: 1939571427}
   m_Father: {fileID: 1203743908}
   m_RootOrder: 0
---- !u!1 &1116616702
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 224: {fileID: 1116616703}
-  - 222: {fileID: 1116616706}
-  - 114: {fileID: 1116616705}
-  - 114: {fileID: 1116616704}
-  m_Layer: 5
-  m_Name: Ticker
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1116616703
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1116616702}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1530791953}
-  m_RootOrder: 6
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -59, y: -191.199997}
-  m_SizeDelta: {x: 622.159973, y: 20}
-  m_Pivot: {x: .5, y: .5}
---- !u!114 &1116616704
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1116616702}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1200242548, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShowMaskGraphic: 1
---- !u!114 &1116616705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1116616702}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_Sprite: {fileID: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &1116616706
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1116616702}
 --- !u!1 &1139605784
 GameObject:
   m_ObjectHideFlags: 0
@@ -4835,7 +4766,7 @@ RectTransform:
   - {fileID: 65580541}
   - {fileID: 526487926}
   m_Father: {fileID: 1530791953}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 80.4000015, y: -151}
@@ -5751,15 +5682,15 @@ MonoBehaviour:
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
-  isReadyForThreadedCalculations: 1
+  isReadyForThreadedCalculations: 0
   prewarm: 0
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  localTime: 388.602936
-  localDeltaTime: 388.373016
+  localTime: .315737516
+  localDeltaTime: 0
   previousActiveState: 0
-  simulationStarted: .229905859
+  simulationStarted: .315737516
   loopExceeded: 0
   loopExceededOnParticle: -1
 --- !u!199 &1422105919
@@ -7658,15 +7589,15 @@ MonoBehaviour:
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
-  isReadyForThreadedCalculations: 1
+  isReadyForThreadedCalculations: 0
   prewarm: 0
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  localTime: 388.602936
-  localDeltaTime: 388.373016
+  localTime: .315248817
+  localDeltaTime: 0
   previousActiveState: 0
-  simulationStarted: .229523391
+  simulationStarted: .315248817
   loopExceeded: 0
   loopExceededOnParticle: -1
 --- !u!199 &1440969123
@@ -9562,15 +9493,15 @@ MonoBehaviour:
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
-  isReadyForThreadedCalculations: 1
+  isReadyForThreadedCalculations: 0
   prewarm: 0
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  localTime: 388.602936
-  localDeltaTime: 388.373016
+  localTime: .315737516
+  localDeltaTime: 0
   previousActiveState: 0
-  simulationStarted: .229905859
+  simulationStarted: .315737516
   loopExceeded: 0
   loopExceededOnParticle: -1
 --- !u!199 &1496913577
@@ -10698,8 +10629,8 @@ RectTransform:
   - {fileID: 181218056}
   - {fileID: 216868678}
   - {fileID: 538214871}
-  - {fileID: 1116616703}
   - {fileID: 1362547637}
+  - {fileID: 737335665}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_AnchorMin: {x: 0, y: 0}
@@ -10789,7 +10720,7 @@ MonoBehaviour:
   headlineText:
   - {fileID: 65580542}
   - {fileID: 526487924}
-  HeadlineSpinTimeTarget: 2
+  HeadlineSpinTimeTarget: 1
 --- !u!1001 &1645824351
 Prefab:
   m_ObjectHideFlags: 0
@@ -11840,6 +11771,205 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!1001 &2030691648
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1530791953}
+    m_Modifications:
+    - target: {fileID: 22412006, guid: 64f2940d3e12c734a914fb6b9072543c, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22412006, guid: 64f2940d3e12c734a914fb6b9072543c, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22412006, guid: 64f2940d3e12c734a914fb6b9072543c, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22412006, guid: 64f2940d3e12c734a914fb6b9072543c, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22412006, guid: 64f2940d3e12c734a914fb6b9072543c, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22412006, guid: 64f2940d3e12c734a914fb6b9072543c, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22412006, guid: 64f2940d3e12c734a914fb6b9072543c, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22412006, guid: 64f2940d3e12c734a914fb6b9072543c, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 22412006, guid: 64f2940d3e12c734a914fb6b9072543c, type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -59.9000015
+      objectReference: {fileID: 0}
+    - target: {fileID: 22412006, guid: 64f2940d3e12c734a914fb6b9072543c, type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -193.619995
+      objectReference: {fileID: 0}
+    - target: {fileID: 22412006, guid: 64f2940d3e12c734a914fb6b9072543c, type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 630.099976
+      objectReference: {fileID: 0}
+    - target: {fileID: 22412006, guid: 64f2940d3e12c734a914fb6b9072543c, type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 22412006, guid: 64f2940d3e12c734a914fb6b9072543c, type: 2}
+      propertyPath: m_AnchorMin.x
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 22412006, guid: 64f2940d3e12c734a914fb6b9072543c, type: 2}
+      propertyPath: m_AnchorMin.y
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 22412006, guid: 64f2940d3e12c734a914fb6b9072543c, type: 2}
+      propertyPath: m_AnchorMax.x
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 22412006, guid: 64f2940d3e12c734a914fb6b9072543c, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 22412006, guid: 64f2940d3e12c734a914fb6b9072543c, type: 2}
+      propertyPath: m_Pivot.x
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 22412006, guid: 64f2940d3e12c734a914fb6b9072543c, type: 2}
+      propertyPath: m_Pivot.y
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11499434, guid: 64f2940d3e12c734a914fb6b9072543c, type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 89bdc0d9ff3e5f646890a42454623998,
+        type: 3}
+    - target: {fileID: 11499434, guid: 64f2940d3e12c734a914fb6b9072543c, type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11499434, guid: 64f2940d3e12c734a914fb6b9072543c, type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11499434, guid: 64f2940d3e12c734a914fb6b9072543c, type: 2}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11499434, guid: 64f2940d3e12c734a914fb6b9072543c, type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 11499434, guid: 64f2940d3e12c734a914fb6b9072543c, type: 2}
+      propertyPath: m_Text
+      value: 'CRISIS DECLARED OFFICIALLY WORSE THAN ''PLANKING'' CRAZE. - OUTRAGE
+        AS MONSTER USES CITY MONUMENT AS TOOTHPICK. - RESIDENTS URGED TO ONLY TAKE
+        VITAL SUPPLIES WITH THEM, LEAVE THAT ONE DIRECTION POSTER, LEAVE IT, LET IT
+        BURN. - RADIATION EMITTED BY MONSTER INTERFERRING WITH WIFI HOTSPOTS, NOVEL
+        WRITERS INCONVENIENCED. - A PACIFIC RIM-SHOT ATTEMPT TO ERECT GIANT SEA-WALL
+        TO FEND OFF FUTURE MONSTERS DEEMED IDIOTIC. - TRAFFIC WATCH: JUST DON''T.
+        - MYSTIC WHO PREDICTED MONSTERS ARRIVAL UNABLE TO PREDICT BEING THROWN ACROSS
+        THE CITY LIKE A DISCUS. - JUSTIN BEIBER OFFERS SUPPORT TO SURVIVORS, SURVIVORS
+        WALK WILLINGLY TOWARDS DEATH. - HOPES FOR TOLL-BRIDGE RESTORED AS MONSTER
+        DEFECATES TICKET BOOTH. - NEWSCASTER LOSES BET THAT THIS WILL BE A SLOW NEWS
+        DAY, HAD PLANS FOR THAT MONEY. - CRISIS DECLARED OFFICIALLY WORSE THAN ''PLANKING''
+        CRAZE. - OUTRAGE AS MONSTER USES CITY MONUMENT AS TOOTHPICK. - RESIDENTS URGED
+        TO ONLY TAKE VITAL SUPPLIES WITH THEM, LEAVE THAT ONE DIRECTION POSTER, LEAVE
+        IT, LET IT BURN. - RADIATION EMITTED BY MONSTER INTERFERRING WITH WIFI HOTSPOTS,
+        NOVEL WRITERS INCONVENIENCED. - A PACIFIC RIM-SHOT ATTEMPT TO ERECT GIANT
+        SEA-WALL TO FEND OFF FUTURE MONSTERS DEEMED IDIOTIC. - TRAFFIC WATCH: JUST
+        DON''T. - MYSTIC WHO PREDICTED MONSTERS ARRIVAL UNABLE TO PREDICT BEING THROWN
+        ACROSS THE CITY LIKE A DISCUS. - JUSTIN BEIBER OFFERS SUPPORT TO SURVIVORS,
+        SURVIVORS WALK WILLINGLY TOWARDS DEATH. - HOPES FOR TOLL-BRIDGE RESTORED AS
+        MONSTER DEFECATES TICKET BOOTH. - NEWSCASTER LOSES BET THAT THIS WILL BE A
+        SLOW NEWS DAY, HAD PLANS FOR THAT MONEY. - CRISIS DECLARED OFFICIALLY WORSE
+        THAN ''PLANKING'' CRAZE. - OUTRAGE AS MONSTER USES CITY MONUMENT AS TOOTHPICK.
+        - RESIDENTS URGED TO ONLY TAKE VITAL SUPPLIES WITH THEM, LEAVE THAT ONE DIRECTION
+        POSTER, LEAVE IT, LET IT BURN. - RADIATION EMITTED BY MONSTER INTERFERRING
+        WITH WIFI HOTSPOTS, NOVEL WRITERS INCONVENIENCED. - A PACIFIC RIM-SHOT ATTEMPT
+        TO ERECT GIANT SEA-WALL TO FEND OFF FUTURE MONSTERS DEEMED IDIOTIC. - TRAFFIC
+        WATCH: JUST DON''T. - MYSTIC WHO PREDICTED MONSTERS ARRIVAL UNABLE TO PREDICT
+        BEING THROWN ACROSS THE CITY LIKE A DISCUS. - JUSTIN BEIBER OFFERS SUPPORT
+        TO SURVIVORS, SURVIVORS WALK WILLINGLY TOWARDS DEATH. - HOPES FOR TOLL-BRIDGE
+        RESTORED AS MONSTER DEFECATES TICKET BOOTH. - NEWSCASTER LOSES BET THAT THIS
+        WILL BE A SLOW NEWS DAY, HAD PLANS FOR THAT MONEY. - CRISIS DECLARED OFFICIALLY
+        WORSE THAN ''PLANKING'' CRAZE. - OUTRAGE AS MONSTER USES CITY MONUMENT AS
+        TOOTHPICK. - RESIDENTS URGED TO ONLY TAKE VITAL SUPPLIES WITH THEM, LEAVE
+        THAT ONE DIRECTION POSTER, LEAVE IT, LET IT BURN. - RADIATION EMITTED BY MONSTER
+        INTERFERRING WITH WIFI HOTSPOTS, NOVEL WRITERS INCONVENIENCED. - A PACIFIC
+        RIM-SHOT ATTEMPT TO ERECT GIANT SEA-WALL TO FEND OFF FUTURE MONSTERS DEEMED
+        IDIOTIC. - TRAFFIC WATCH: JUST DON''T. - MYSTIC WHO PREDICTED MONSTERS ARRIVAL
+        UNABLE TO PREDICT BEING THROWN ACROSS THE CITY LIKE A DISCUS. - JUSTIN BEIBER
+        OFFERS SUPPORT TO SURVIVORS, SURVIVORS WALK WILLINGLY TOWARDS DEATH. - HOPES
+        FOR TOLL-BRIDGE RESTORED AS MONSTER DEFECATES TICKET BOOTH. - NEWSCASTER LOSES
+        BET THAT THIS WILL BE A SLOW NEWS DAY, HAD PLANS FOR THAT MONEY. - CRISIS
+        DECLARED OFFICIALLY WORSE THAN ''PLANKING'' CRAZE. - OUTRAGE AS MONSTER USES
+        CITY MONUMENT AS TOOTHPICK. - RESIDENTS URGED TO ONLY TAKE VITAL SUPPLIES
+        WITH THEM, LEAVE THAT ONE DIRECTION POSTER, LEAVE IT, LET IT BURN. - RADIATION
+        EMITTED BY MONSTER INTERFERRING WITH WIFI HOTSPOTS, NOVEL WRITERS INCONVENIENCED.
+        - A PACIFIC RIM-SHOT ATTEMPT TO ERECT GIANT SEA-WALL TO FEND OFF FUTURE MONSTERS
+        DEEMED IDIOTIC. - TRAFFIC WATCH: JUST DON''T. - MYSTIC WHO PREDICTED MONSTERS
+        ARRIVAL UNABLE TO PREDICT BEING THROWN ACROSS THE CITY LIKE A DISCUS. - JUSTIN
+        BEIBER OFFERS SUPPORT TO SURVIVORS, SURVIVORS WALK WILLINGLY TOWARDS DEATH.
+        - HOPES FOR TOLL-BRIDGE RESTORED AS MONSTER DEFECATES TICKET BOOTH. - NEWSCASTER
+        LOSES BET THAT THIS WILL BE A SLOW NEWS DAY, HAD PLANS FOR THAT MONEY. - CRISIS
+        DECLARED OFFICIALLY WORSE THAN ''PLANKING'' CRAZE. - OUTRAGE AS MONSTER USES
+        CITY MONUMENT AS TOOTHPICK. - RESIDENTS URGED TO ONLY TAKE VITAL SUPPLIES
+        WITH THEM, LEAVE THAT ONE DIRECTION POSTER, LEAVE IT, LET IT BURN. - RADIATION
+        EMITTED BY MONSTER INTERFERRING WITH WIFI HOTSPOTS, NOVEL WRITERS INCONVENIENCED.
+        - A PACIFIC RIM-SHOT ATTEMPT TO ERECT GIANT SEA-WALL TO FEND OFF FUTURE MONSTERS
+        DEEMED IDIOTIC. - TRAFFIC WATCH: JUST DON''T. - MYSTIC WHO PREDICTED MONSTERS
+        ARRIVAL UNABLE TO PREDICT BEING THROWN ACROSS THE CITY LIKE A DISCUS. - JUSTIN
+        BEIBER OFFERS SUPPORT TO SURVIVORS, SURVIVORS WALK WILLINGLY TOWARDS DEATH.
+        - HOPES FOR TOLL-BRIDGE RESTORED AS MONSTER DEFECATES TICKET BOOTH. - NEWSCASTER
+        LOSES BET THAT THIS WILL BE A SLOW NEWS DAY, HAD PLANS FOR THAT MONEY. - CRISIS
+        DECLARED OFFICIALLY WORSE THAN ''PLANKING'' CRAZE. - OUTRAGE AS MONSTER USES
+        CITY MONUMENT AS TOOTHPICK. - RESIDENTS URGED TO ONLY TAKE VITAL SUPPLIES
+        WITH THEM, LEAVE THAT ONE DIRECTION POSTER, LEAVE IT, LET IT BURN. - RADIATION
+        EMITTED BY MONSTER INTERFERRING WITH WIFI HOTSPOTS, NOVEL WRITERS INCONVENIENCED.
+        - A PACIFIC RIM-SHOT ATTEMPT TO ERECT GIANT SEA-WALL TO FEND OFF FUTURE MONSTERS
+        DEEMED IDIOTIC. - TRAFFIC WATCH: JUST DON''T. - MYSTIC WHO PREDICTED MONSTERS
+        ARRIVAL UNABLE TO PREDICT BEING THROWN ACROSS THE CITY LIKE A DISCUS. - JUSTIN
+        BEIBER OFFERS SUPPORT TO SURVIVORS, SURVIVORS WALK WILLINGLY TOWARDS DEATH.
+        - HOPES FOR TOLL-BRIDGE RESTORED AS MONSTER DEFECATES TICKET BOOTH. - NEWSCASTER
+        LOSES BET THAT THIS WILL BE A SLOW NEWS DAY, HAD PLANS FOR THAT MONEY. - CRISIS
+        DECLARED OFFICIALLY WORSE THAN ''PLANKING'' CRAZE. - OUTRAGE AS MONSTER USES
+        CITY MONUMENT AS TOOTHPICK. - RESIDENTS URGED TO ONLY TAKE VITAL SUPPLIES
+        WITH THEM, LEAVE THAT ONE DIRECTION POSTER, LEAVE IT, LET IT BURN. - RADIATION
+        EMITTED BY MONSTER INTERFERRING WITH WIFI HOTSPOTS, NOVEL WRITERS INCONVENIENCED.
+        - A PACIFIC RIM-SHOT ATTEMPT TO ERECT GIANT SEA-WALL TO FEND OFF FUTURE MONSTERS
+        DEEMED IDIOTIC. - TRAFFIC WATCH: JUST DON''T. - MYSTIC WHO PREDICTED MONSTERS
+        ARRIVAL UNABLE TO PREDICT BEING THROWN ACROSS THE CITY LIKE A DISCUS. - JUSTIN
+        BEIBER OFFERS SUPPORT TO SURVIVORS, SURVIVORS WALK WILLINGLY TOWARDS DEATH.
+        - HOPES FOR TOLL-BRIDGE RESTORED AS MONSTER DEFECATES TICKET BOOTH. - NEWSCASTER
+        LOSES BET THAT THIS WILL BE A SLOW NEWS DAY, HAD PLANS FOR THAT MONEY. - '
+      objectReference: {fileID: 0}
+    - target: {fileID: 22435290, guid: 64f2940d3e12c734a914fb6b9072543c, type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464946, guid: 64f2940d3e12c734a914fb6b9072543c, type: 2}
+      propertyPath: ScrollSpeed
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464946, guid: 64f2940d3e12c734a914fb6b9072543c, type: 2}
+      propertyPath: ItemsInStory
+      value: 20
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 64f2940d3e12c734a914fb6b9072543c, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &2109826478
 Prefab:
   m_ObjectHideFlags: 0
@@ -11879,6 +12009,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11447230, guid: 40a93b7cd47dc7e45984786abd486206, type: 2}
+      propertyPath: Kaiju
+      value: 
+      objectReference: {fileID: 1203743902}
+    - target: {fileID: 11447230, guid: 40a93b7cd47dc7e45984786abd486206, type: 2}
+      propertyPath: UiCamera
+      value: 
+      objectReference: {fileID: 153290195}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 40a93b7cd47dc7e45984786abd486206, type: 2}
   m_IsPrefabParent: 0

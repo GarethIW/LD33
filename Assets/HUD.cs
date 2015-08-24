@@ -19,6 +19,8 @@ public class HUD : MonoBehaviour
 
     private bool scrollingHeadline;
 
+    private bool hasDefeated;
+
     string[] headlines = new string[5];
 
 	// Use this for initialization
@@ -68,12 +70,15 @@ public class HUD : MonoBehaviour
 	            float kaijuHealthPercent = (100f/ Kaiju.BaseHealth) *Kaiju.Health;
 
 	            headlines[1] = "MONSTER SEEMS ANGRY";
-	            if (kaijuHealthPercent <= 80f) headlines[1] = "MILITARY INNEFECTUAL";
-	            if (kaijuHealthPercent <= 60f) headlines[1] = "MONSTER HIT BY UNSHAKEN";
+	            if (kaijuHealthPercent <= 80f) headlines[1] = "MILITARY INEFFECTUAL";
+	            if (kaijuHealthPercent <= 60f) headlines[1] = "MONSTER HIT BUT UNSHAKEN";
 	            if (kaijuHealthPercent <= 40f) headlines[1] = "MONSTER IS WOUNDED";
 	            if (kaijuHealthPercent <= 20f) headlines[1] = "MILITARY FEELS CONFIDENT";
 	            if (kaijuHealthPercent <= 10f) headlines[1] = "MONSTER LOOKS VISIBLY WEAK";
-	            if (kaijuHealthPercent <= 0f) headlines[1] = "MONSTER IS DEFEATED!";
+	            if (kaijuHealthPercent <= 0f)
+	            {
+	                headlines[1] = "MONSTER IS DEFEATED!";
+	            }
 
                 headlines[2] = string.Format("{0} CIVILIANS DEAD", GameManager.Instance.Civilians.ToString(CultureInfo.CurrentCulture.NumberFormat));
 	            headlines[3] = string.Format("${0} OF DAMAGE", GameManager.Instance.DamageCost.ToString(CultureInfo.CurrentCulture.NumberFormat));
@@ -104,7 +109,16 @@ public class HUD : MonoBehaviour
                     if (nextHeadline == 4 && GameManager.Instance.Military == 0) nextHeadline = 1;
                 }
 
-                headlineText[usingHeadline].text = headlines[nextHeadline];
+	            if (kaijuHealthPercent <= 0f)
+	            {
+	                if (!hasDefeated)
+	                {
+	                    hasDefeated = true;
+	                    nextHeadline = 1;
+	                }
+	            }
+
+	            headlineText[usingHeadline].text = headlines[nextHeadline];
 
                 usingHeadline = 1 - usingHeadline;
 
