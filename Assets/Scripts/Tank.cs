@@ -117,6 +117,19 @@ public class Tank : Enemy
         }
     }
 
+<<<<<<< HEAD
+    protected override void SetUpAudio()
+    {
+        AudioSource[] audioSources = GetComponents<AudioSource>();
+        foreach (AudioSource source in audioSources)
+        {
+
+            if (source.clip.name.Equals("chicken"))
+            {
+                moveAudio = source;
+            }
+
+=======
     public override void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.GetComponentInParent<Kaiju>() != null && collision.collider.name!="hand1")
@@ -129,6 +142,7 @@ public class Tank : Enemy
             isOnFloor = true;
             transform.localRotation = Quaternion.identity;
             GetComponent<Rigidbody>().freezeRotation = true;
+>>>>>>> origin/master
         }
     }
 }

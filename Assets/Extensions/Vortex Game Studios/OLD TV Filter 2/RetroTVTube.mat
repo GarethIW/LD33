@@ -228,11 +228,11 @@ Material:
       data:
         first:
           name: _ReflexMagnetude
-        second: .25
+        second: .5
       data:
         first:
           name: _Distortion
-        second: .100000001
+        second: .189999998
       data:
         first:
           name: _TVReflexMagnetude

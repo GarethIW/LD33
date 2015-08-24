@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
+
+//using System;
 
 public class Citizen : Enemy
 {
@@ -93,5 +94,25 @@ public class Citizen : Enemy
         spriteRender.color = new Color(Random.Range(0.2f, 1f), Random.Range(0.2f, 1f), Random.Range(0.2f, 1f));
 
         base.Init();
+    }
+
+    protected override void SetUpAudio()
+
+    {
+
+        AudioSource[] audioSources = GetComponents<AudioSource>();
+        foreach (AudioSource source in audioSources)
+        {
+
+            if (source.clip.name.Equals("Human Footstep"))
+            {
+                moveAudio = source;
+            }
+            else if (source.clip.name.Equals("Human Scream"))
+            {
+                painAudio = source;
+            }
+
+        }
     }
 }

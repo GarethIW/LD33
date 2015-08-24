@@ -41,19 +41,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefabs:
   - Prefab: {fileID: 155232, guid: 42b9bd2f89187664a8d55333cc32af6d, type: 2}
-    Amount: 10
+    Amount: 100
   - Prefab: {fileID: 151328, guid: 704d389ccc1ff3a4294bd42f552c8b18, type: 2}
-    Amount: 2
+    Amount: 0
   - Prefab: {fileID: 157646, guid: b1c5012ad48ea0d46afed4a00cd0f3e4, type: 2}
-    Amount: 10
-  SpawnOffset: 10
+    Amount: 100
+  - Prefab: {fileID: 138802, guid: ac0a0aa89507f7b459c09f03a9d9ca89, type: 2}
+    Amount: 50
+  SpawnOffset: 20
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: SpawnOffset
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Prefabs.Array.data[3].Amount
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 152750}

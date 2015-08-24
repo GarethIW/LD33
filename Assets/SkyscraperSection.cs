@@ -24,7 +24,7 @@ public class SkyscraperSection : MonoBehaviour
     public Material TopWrkMaterialBillBoard;
 
 
-
+   
     private PlaygroundEventC playgroundEvent;
 
     // Use this for initialization
@@ -32,6 +32,8 @@ public class SkyscraperSection : MonoBehaviour
     {
         playgroundEvent = PlaygroundC.GetEvent(0, PlaygroundC.GetParticles(0));
         playgroundEvent.particleEvent += OnEvent;
+
+      
 
     }
 
@@ -74,7 +76,7 @@ public class SkyscraperSection : MonoBehaviour
 
         if (Health <= 0f)
         {
-
+            DropAudioPlayer();
             GameManager.Instance.DamageCost += DamageCost;
             GameManager.Instance.score += Score;
 
@@ -114,6 +116,15 @@ public class SkyscraperSection : MonoBehaviour
         
 
 
+    }
+
+    private void DropAudioPlayer()
+    {
+        GameObject dap = EnemyManager.Instance.GetOne("DroppableAudioPlayer");
+        dap.transform.position = transform.position;
+      
+        dap.SetActive(true);
+        dap.GetComponent<AudioSource>().Play();
     }
 
     private Material getTopMaterial()
@@ -190,6 +201,11 @@ public class SkyscraperSection : MonoBehaviour
                 if (fire != null)
                 {
                     fire.GetComponent<Fire>().Init(transform, new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.25f, 0.25f), -0.01f));
+                    AudioSource fireSource = GetComponent<AudioSource>();
+                    if (!fireSource.isPlaying)
+                    {
+                        fireSource.Play();
+                    }
                 }
             }
         }
