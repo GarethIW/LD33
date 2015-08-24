@@ -12,7 +12,6 @@ GameObject:
   - 114: {fileID: 11447846}
   - 54: {fileID: 5459310}
   - 136: {fileID: 13646538}
-  - 114: {fileID: 11499680}
   m_Layer: 12
   m_Name: Citizen
   m_TagString: Untagged
@@ -166,7 +165,7 @@ MonoBehaviour:
   FireAtRange: 5
   Speed: 1
   FlameDamage: .100000001
-  KnockbackDamage: 2.5
+  KnockbackDamage: 5
   Health: 10
   BaseHealth: 10
   ScorePoints: 10
@@ -178,21 +177,8 @@ MonoBehaviour:
   isOnFire: 0
   isFleeing: 0
   isFiring: 0
+  isOnFloor: 0
   currentMovementTarget: {x: 0, y: 0, z: 0}
---- !u!114 &11499680
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 157646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23533285f9109854f87bf31d117a7d43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HandleOffset: {x: 0, y: 0, z: 0}
-  ThrowForce: 20
-  isBeingThrown: 0
 --- !u!136 &13646538
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -278,7 +264,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: KnockbackDamage
-      value: 2.5
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

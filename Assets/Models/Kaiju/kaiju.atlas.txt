@@ -1,5 +1,5 @@
 
-kaiju2.png
+kaiju.png
 size: 4096,2048
 format: RGBA8888
 filter: Linear,Linear

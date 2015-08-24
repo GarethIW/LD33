@@ -61,7 +61,7 @@ public class SkyscraperSection : MonoBehaviour
 
         }
         renderer.material.SetColor("_Color", colour);
-        Debug.Log("Changing material on " + transform.gameObject.name + " to " + renderer.sharedMaterial.name);
+        //Debug.Log("Changing material on " + transform.gameObject.name + " to " + renderer.sharedMaterial.name);
 
     }
 
@@ -77,9 +77,29 @@ public class SkyscraperSection : MonoBehaviour
 
             GameManager.Instance.DamageCost += DamageCost;
             GameManager.Instance.score += Score;
+
+
+            var ex = ExplosionManager.Instance.GetOne("Explosion");
+            if (ex != null)
+            {
+                ex.transform.position = transform.position + new Vector3(0f, 0.1f, -0.5f);
+                ex.GetComponent<Explosion>().Init(2f);
+            }
+
             gameObject.SetActive(false);
         }
         else if (Health <= 0.3f)
+        {
+            Material topMaterial;
+
+            topMaterial = getTopMaterial();
+
+
+
+            ApplyMaterials(BaseWrkMaterial, MidWrkMaterial, topMaterial);
+            applyBillboardMaterial();
+        }
+        else if (Health <= 0.6f)
         {
             // GetComponent<MeshRenderer>().material.SetColor("_Color", new Color(Health,Health, Health));  
             Material topMaterial;
@@ -91,17 +111,7 @@ public class SkyscraperSection : MonoBehaviour
 
 
         }
-        else if (Health <= 0.6f)
-        {
-            Material topMaterial;
-
-            topMaterial = getTopMaterial();
-
-
-
-            ApplyMaterials(BaseWrkMaterial, MidWrkMaterial, topMaterial);
-            applyBillboardMaterial();
-        }
+        
 
 
     }
@@ -173,7 +183,7 @@ public class SkyscraperSection : MonoBehaviour
         if (this == null) return;
         if (particle.collisionCollider.gameObject == this.gameObject)
         {
-            Health -= 0.001f;
+            Health -= 0.00001f;
             if (Random.Range(0, 500) == 0)
             {
                 var fire = FireManager.Instance.GetOne("Fire");

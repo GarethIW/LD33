@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using ParticlePlayground;
 
 public class Trooper : Enemy
 {
@@ -52,7 +53,7 @@ public class Trooper : Enemy
         {
             currentMovementTarget = transform.position;
 
-            if (coolDownTimer >= FireRate && Random.Range(0, 100) == 0)
+            if (coolDownTimer >= FireRate && Random.Range(0, 25) == 0)
             {
                 coolDownTimer = 0f;
                 Fire();
@@ -97,13 +98,15 @@ public class Trooper : Enemy
 
         Vector3 targetPosition = player.transform.position;
         targetPosition.y = 1.2f+Random.Range(0f,1f);
-        targetPosition.z += 0.15f;
+        targetPosition.x += Random.Range(-0.2f, 0.2f);
 
         gunLine.SetPosition(1, targetPosition);
 
        Kaiju kaiju= player.GetComponent<Kaiju>();
 
         kaiju.hp -= DamagePerShot;
+        for (int i = 0; i < 10; i++)
+            PlaygroundC.GetParticles(3).Emit(targetPosition+ new Vector3(0f,0f,-0.3f), Random.insideUnitSphere * 0.5f);
 
     }
 

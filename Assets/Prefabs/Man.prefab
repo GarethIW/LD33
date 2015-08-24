@@ -165,7 +165,7 @@ MonoBehaviour:
   FireAtRange: 3
   Speed: 1
   FlameDamage: .100000001
-  KnockbackDamage: 2.5
+  KnockbackDamage: 4
   Health: 10
   BaseHealth: 10
   ScorePoints: 10
@@ -177,6 +177,7 @@ MonoBehaviour:
   isOnFire: 0
   isFleeing: 0
   isFiring: 0
+  isOnFloor: 0
   currentMovementTarget: {x: 0, y: 0, z: 0}
   DamagePerShot: 1
 --- !u!120 &12044188
@@ -186,7 +187,7 @@ LineRenderer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 155232}
   m_Enabled: 0
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_Materials:
   - {fileID: 2100000, guid: b478e4d06be67b44b998010aadc6bad7, type: 2}
@@ -293,7 +294,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: KnockbackDamage
-      value: 2.5
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

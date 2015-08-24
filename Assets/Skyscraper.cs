@@ -28,7 +28,7 @@ public class Skyscraper : MonoBehaviour
 	    float y = 0.193f; // half the section height
 	    for (int i = 0; i < Height; i++)
 	    {
-            Debug.Log("Start() Building Building");
+            //Debug.Log("Start() Building Building");
 	        var section = Instantiate(SectionPrefab);
             section.transform.SetParent(transform, false);
             section.transform.localPosition = new Vector3(0f,y,0f);

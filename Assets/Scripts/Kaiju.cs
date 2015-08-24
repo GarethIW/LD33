@@ -211,7 +211,8 @@ public class Kaiju : MonoBehaviour
                 rigidBody.AddForce(0f, climbGravity+(-(transform.position.y*4f)), 0f, ForceMode.Acceleration);
             }
 
-            if(!isPickingUp && !isThrowing) SetAnimation(idleAnimation, true);
+            if(isClimbing && rigidBody.velocity.y>0f) SetAnimation("Climb", true);
+            else if(!isPickingUp && !isThrowing) SetAnimation(idleAnimation, true);
         }
 
         if (rigidBody.velocity.magnitude > maxSpeed)
@@ -274,7 +275,9 @@ public class Kaiju : MonoBehaviour
 
     public void Pickup(GameObject other, Vector3 off)
     {
-        other.transform.SetParent(handTransform, false);
+        if (!isPickingUp || holdingObject!=null) return;
+
+        other.transform.SetParent(handTransform, true);
         other.transform.position = handTransform.position + off;
         holdingObject = other;
     }
@@ -317,24 +320,36 @@ public class Kaiju : MonoBehaviour
                 stompParticles.Emit(250);
 
 
+                Stomp();
 
-
-                 Collider[] colliders = Physics.OverlapSphere(transform.position, 3f);
-
-                foreach (Collider hit in colliders)
-                {
-                    if (hit.GetComponent<Rigidbody>() && !hit.GetComponent<SkyscraperSection>())
-                        hit.GetComponent<Rigidbody>().AddExplosionForce(200f, transform.position, 3f, 2f);
-
-                    if (hit.GetComponent<Enemy>() != null)
-                        hit.GetComponent<Enemy>().KnockedBack();
-                }
+                 
 
 
 
                 //rigidBody.AddExplosionForce(100f, transform.position,5f);
             }
         }
+    }
+
+    public void Stomp()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 3f);
+
+        foreach (Collider hit in colliders)
+        {
+            if (hit.GetComponent<Rigidbody>() && !hit.GetComponent<SkyscraperSection>())
+                hit.GetComponent<Rigidbody>().AddExplosionForce(200f, transform.position, 3f, 2f);
+
+            if (hit.GetComponent<Enemy>() != null)
+                hit.GetComponent<Enemy>().KnockedBack();
+        }
+    }
+
+    public void HitByProjectile(Vector3 pos)
+    {
+        hp -= 50;
+        for (int i = 0; i < 50; i++)
+            PlaygroundC.GetParticles(3).Emit(pos + new Vector3(Random.Range(-0.25f, 0.25f), Random.Range(-0.25f, 0.25f), -0.1f), Random.insideUnitSphere * 0.5f);
     }
 
     public void OnTriggerExit(Collider other)
