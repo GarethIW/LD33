@@ -1931,16 +1931,16 @@ MonoBehaviour:
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
-  isReadyForThreadedCalculations: 1
+  isReadyForThreadedCalculations: 0
   prewarm: 0
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  localTime: 38.9028625
-  localDeltaTime: 38.7515488
+  localTime: 44.052681
+  localDeltaTime: .0323524475
   previousActiveState: 0
-  simulationStarted: .151312605
-  loopExceeded: 0
+  simulationStarted: .269630909
+  loopExceeded: 1
   loopExceededOnParticle: -1
 --- !u!199 &543457199
 ParticleSystemRenderer:
@@ -3901,10 +3901,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 11403034, guid: 4fc1232585010a64ca014d25a4452567, type: 2}
-      propertyPath: Features.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 485942, guid: 4fc1232585010a64ca014d25a4452567, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3936,34 +3932,6 @@ Prefab:
     - target: {fileID: 485942, guid: 4fc1232585010a64ca014d25a4452567, type: 2}
       propertyPath: m_RootOrder
       value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 11403034, guid: 4fc1232585010a64ca014d25a4452567, type: 2}
-      propertyPath: CityDepth
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 11403034, guid: 4fc1232585010a64ca014d25a4452567, type: 2}
-      propertyPath: Features.Array.data[0]
-      value: 
-      objectReference: {fileID: 125200, guid: 300fdefd8ec19814fb0ea00eb787135c, type: 2}
-    - target: {fileID: 11403034, guid: 4fc1232585010a64ca014d25a4452567, type: 2}
-      propertyPath: Features.Array.data[1]
-      value: 
-      objectReference: {fileID: 162384, guid: d5b76299ac72e834e95b3c21ec530e36, type: 2}
-    - target: {fileID: 198456, guid: 4fc1232585010a64ca014d25a4452567, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8230852, guid: 4fc1232585010a64ca014d25a4452567, type: 2}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8230852, guid: 4fc1232585010a64ca014d25a4452567, type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198456, guid: 4fc1232585010a64ca014d25a4452567, type: 2}
-      propertyPath: m_Layer
-      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4fc1232585010a64ca014d25a4452567, type: 2}
@@ -4771,58 +4739,6 @@ MonoBehaviour:
   boneName: upperarm2
   parentReference: {fileID: 0}
   transformLerpComplete: 0
---- !u!1 &1416215704 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 198456, guid: 4fc1232585010a64ca014d25a4452567, type: 2}
-  m_PrefabInternal: {fileID: 1200489315}
---- !u!65 &1416215705
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1416215704}
-  m_Material: {fileID: 13400000, guid: fd90b14abc6e76a48a69329b6a4bbdfd, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 40, y: 20, z: 1}
-  m_Center: {x: 20, y: 0, z: -1.64999998}
---- !u!65 &1416215706
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1416215704}
-  m_Material: {fileID: 13400000, guid: fd90b14abc6e76a48a69329b6a4bbdfd, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 20, z: 44.2000008}
-  m_Center: {x: -.400000006, y: 0, z: 18.2999992}
---- !u!65 &1416215707
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1416215704}
-  m_Material: {fileID: 13400000, guid: fd90b14abc6e76a48a69329b6a4bbdfd, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 20, z: 44.2000008}
-  m_Center: {x: 40.4000015, y: 0, z: 18.2999992}
---- !u!65 &1416215709
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1416215704}
-  m_Material: {fileID: 13400000, guid: fd90b14abc6e76a48a69329b6a4bbdfd, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 40, y: 20, z: 1}
-  m_Center: {x: 20, y: 0, z: 37.5600014}
 --- !u!1 &1422105917
 GameObject:
   m_ObjectHideFlags: 0
@@ -5551,16 +5467,16 @@ MonoBehaviour:
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
-  isReadyForThreadedCalculations: 1
+  isReadyForThreadedCalculations: 0
   prewarm: 0
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  localTime: 38.9028625
-  localDeltaTime: 38.7515488
+  localTime: 44.052681
+  localDeltaTime: .0323524475
   previousActiveState: 0
-  simulationStarted: .151312605
-  loopExceeded: 0
+  simulationStarted: .269630909
+  loopExceeded: 1
   loopExceededOnParticle: -1
 --- !u!199 &1422105919
 ParticleSystemRenderer:
@@ -7458,16 +7374,16 @@ MonoBehaviour:
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
-  isReadyForThreadedCalculations: 1
+  isReadyForThreadedCalculations: 0
   prewarm: 0
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  localTime: 38.9028625
-  localDeltaTime: 38.7520866
+  localTime: 44.052681
+  localDeltaTime: .0323524475
   previousActiveState: 0
-  simulationStarted: .150776282
-  loopExceeded: 0
+  simulationStarted: .268957376
+  loopExceeded: 1
   loopExceededOnParticle: -1
 --- !u!199 &1440969123
 ParticleSystemRenderer:
@@ -9362,16 +9278,16 @@ MonoBehaviour:
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
-  isReadyForThreadedCalculations: 1
+  isReadyForThreadedCalculations: 0
   prewarm: 0
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  localTime: 38.9028625
-  localDeltaTime: 38.7515488
+  localTime: 44.052681
+  localDeltaTime: .0323524475
   previousActiveState: 0
-  simulationStarted: .151312605
-  loopExceeded: 0
+  simulationStarted: .269630909
+  loopExceeded: 1
   loopExceededOnParticle: -1
 --- !u!199 &1496913577
 ParticleSystemRenderer:
@@ -10580,7 +10496,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11455466, guid: bad79d3e0732c8c45b937f6a09f6bfc7, type: 2}
       propertyPath: Prefabs.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 422338, guid: bad79d3e0732c8c45b937f6a09f6bfc7, type: 2}
       propertyPath: m_LocalPosition.x
@@ -10645,7 +10561,7 @@ Prefab:
     - target: {fileID: 11455466, guid: bad79d3e0732c8c45b937f6a09f6bfc7, type: 2}
       propertyPath: Prefabs.Array.data[5].Prefab
       value: 
-      objectReference: {fileID: 157646, guid: b1c5012ad48ea0d46afed4a00cd0f3e4, type: 2}
+      objectReference: {fileID: 138802, guid: ac0a0aa89507f7b459c09f03a9d9ca89, type: 2}
     - target: {fileID: 11455466, guid: bad79d3e0732c8c45b937f6a09f6bfc7, type: 2}
       propertyPath: Prefabs.Array.data[5].Amount
       value: 100

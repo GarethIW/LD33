@@ -108,7 +108,7 @@ public class Citizen : Enemy
             {
                 moveAudio = source;
             }
-            else if (source.clip.name.Equals("Human Scream"))
+            else if (source.clip.name.Equals("Human Grunt"))
             {
                 painAudio = source;
             }

@@ -264,15 +264,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   frames: []
-<<<<<<< HEAD
-  MoveToRange: 20
-  FireAtRange: 10
-  Speed: 5
-  FlameDamage: .100000001
-  KnockbackDamage: .100000001
-  Health: 10
-  BaseHealth: 10
-=======
   MoveToRange: 10
   FireAtRange: 7
   Speed: .5
@@ -280,7 +271,6 @@ MonoBehaviour:
   KnockbackDamage: 5
   Health: 100
   BaseHealth: 100
->>>>>>> origin/master
   ScorePoints: 10
   FireRate: 3
   MovementCoolDown: 1
@@ -290,16 +280,10 @@ MonoBehaviour:
   isOnFire: 0
   isFleeing: 0
   isFiring: 0
-<<<<<<< HEAD
-  currentMovementTarget: {x: 0, y: 0, z: 0}
---- !u!212 &21275996
-SpriteRenderer:
-=======
   isOnFloor: 0
   currentMovementTarget: {x: 0, y: 0, z: 0}
 --- !u!114 &11450854
 MonoBehaviour:
->>>>>>> origin/master
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -338,7 +322,6 @@ Prefab:
       value: 112
       objectReference: {fileID: 0}
     - target: {fileID: 0}
-<<<<<<< HEAD
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: e2604cf773aae7a488a61f3a20c67723, type: 3}
@@ -347,7 +330,6 @@ Prefab:
       value: 
       objectReference: {fileID: 24303646, guid: e5aef68acecb8d44c8fa5b2931653973,
         type: 2}
-=======
       propertyPath: m_LocalScale.x
       value: 2
       objectReference: {fileID: 0}
@@ -403,7 +385,6 @@ Prefab:
       propertyPath: FireRate
       value: 3
       objectReference: {fileID: 0}
->>>>>>> origin/master
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 151328}
