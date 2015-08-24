@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Spine;
 
 public class CityManager : MonoBehaviour {
 
@@ -12,7 +13,7 @@ public class CityManager : MonoBehaviour {
     private bool justPlacedRoad=false;
     private GameObject roadsObject;
     private int currentRow;
-    
+    private bool justPlacedScraper = false;
 
 	// Use this for initialization
 	void Start ()
@@ -25,6 +26,27 @@ public class CityManager : MonoBehaviour {
 
         createBlock();
 
+        for(int x=-10;x<CityWidth+10;x++)
+            for (int y = -5; y < (CityDepth * 2) + 5; y++)
+            {
+                if (x < 0 || x > CityWidth || y < 0 || y > CityDepth * 2f)
+                {
+                    InsertInstance(0f, (y%2==0 && y>=0 && y<= (CityDepth * 2)+2) ? RoadPrefab:Features[0], gameObject, new Vector3(x * 2f, 0f, y * 2f));
+                }
+            }
+
+        // Put some civvies down
+	    for (int i = 0; i < 300; i++)
+	    {
+	        Vector3 pos = new Vector3(Random.Range(1f,getCityBoundryWidth()-1f), 0f, Random.Range(1f,CityDepth*4f));
+            var c = EnemyManager.Instance.GetOne("Citizen");
+            if (c != null)
+            {
+                c.transform.position = pos;
+                c.GetComponent<Citizen>().Init();
+                c.SetActive(true);
+            }
+        }
     }
 
     public int getWidth()
@@ -77,6 +99,12 @@ public class CityManager : MonoBehaviour {
                 {
 
                     int f = Random.Range(0, Features.Length);
+                    //if (f == 1 && justPlacedScraper)
+                    //{
+                    //    f = 0;
+                    //    justPlacedScraper = false;
+                    //}
+                    //if (f == 1) justPlacedScraper = true;
                     instance = InsertInstance(offset, Features[f], parent, insertionPosition);
                     justPlacedRoad = false;
                 }
@@ -95,6 +123,34 @@ public class CityManager : MonoBehaviour {
             }
 
             insertionPosition.x += offset;
+        }
+
+        // put some cars down
+        if (!randomise)
+        {
+            float y = (row) + 0.25f;
+            for (int i = 0; i < 5; i++)
+            {
+                float x = Random.Range(2f, getCityBoundryWidth() - 2f);
+                var c = EnemyManager.Instance.GetOne(Random.Range(0, 2) == 0 ? "Car" : "SmallCar");
+                if (c != null)
+                {
+                    c.transform.position = new Vector3(x,0f,y);
+                    c.SetActive(true);
+                }
+            }
+
+            y= (row) + 1.75f;
+            for (int i = 0; i < 5; i++)
+            {
+                float x = Random.Range(2f, getCityBoundryWidth() - 2f);
+                var c = EnemyManager.Instance.GetOne(Random.Range(0, 2) == 0 ? "Car" : "SmallCar");
+                if (c != null)
+                {
+                    c.transform.position = new Vector3(x, 0f, y);
+                    c.SetActive(true);
+                }
+            }
         }
     }
 
