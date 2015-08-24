@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
+//using System.Collections;
+//using System;
 
 public class Trooper : Enemy
 {
@@ -12,38 +13,38 @@ public class Trooper : Enemy
     public override void Awake()
     {
         base.Awake();
-       
+
         gunLine = GetComponent<LineRenderer>();
-       
-       
+
+
     }
 
 
 
-    
+
     protected override void Update()
     {
-        
-            if (Vector3.Distance(transform.position, player.transform.position) < FireAtRange && !isFleeing && !isOnFire)
-            {
-                isFiring = true;
+
+        if (Vector3.Distance(transform.position, player.transform.position) < FireAtRange && !isFleeing && !isOnFire)
+        {
+            isFiring = true;
 
 
-            }
-            else if (Vector3.Distance(transform.position, player.transform.position) < MoveToRange)
-            {
-                isFiring = false;
+        }
+        else if (Vector3.Distance(transform.position, player.transform.position) < MoveToRange)
+        {
+            isFiring = false;
 
-                currentMovementTarget = RandomPoint(player.transform.position +
-                                        ((transform.position - player.transform.position).normalized*(FireAtRange-1f)), 1f);
-                //transform.position += getMoveTowardsVector(transform.position, player.transform.position);
-            }
-            else
-            {
-                isFiring = false;
-                currentMovementTarget = getExploringPoint();
-            }
-       
+            currentMovementTarget = RandomPoint(player.transform.position +
+                                    ((transform.position - player.transform.position).normalized * (FireAtRange - 1f)), 1f);
+            //transform.position += getMoveTowardsVector(transform.position, player.transform.position);
+        }
+        else
+        {
+            isFiring = false;
+            currentMovementTarget = getExploringPoint();
+        }
+
 
         gunLine.enabled = false;
 
@@ -52,7 +53,7 @@ public class Trooper : Enemy
         {
             currentMovementTarget = transform.position;
 
-            if (coolDownTimer >= FireRate && Random.Range(0, 100) == 0)
+            if (coolDownTimer >= FireRate && UnityEngine.Random.Range(0, 100) == 0)
             {
                 coolDownTimer = 0f;
                 Fire();
@@ -74,7 +75,7 @@ public class Trooper : Enemy
                 spriteRender.sprite = frames[animFrame];
             }
 
-            
+
         }
 
         if (transform.position.x < currentMovementTarget.x)
@@ -87,7 +88,7 @@ public class Trooper : Enemy
         base.Update();
     }
 
-   
+
 
     protected override void Fire()
     {
@@ -96,12 +97,12 @@ public class Trooper : Enemy
         gunLine.SetPosition(0, transform.position);
 
         Vector3 targetPosition = player.transform.position;
-        targetPosition.y = 1.2f+Random.Range(0f,1f);
+        targetPosition.y = 1.2f + UnityEngine.Random.Range(0f, 1f);
         targetPosition.z += 0.15f;
 
         gunLine.SetPosition(1, targetPosition);
 
-       Kaiju kaiju= player.GetComponent<Kaiju>();
+        Kaiju kaiju = player.GetComponent<Kaiju>();
 
         kaiju.hp -= DamagePerShot;
 
@@ -119,6 +120,24 @@ public class Trooper : Enemy
         base.Init();
     }
 
+    protected override void SetUpAudio()
+    {
+        AudioSource[] audioSources = GetComponents<AudioSource>();
+        foreach (AudioSource source in audioSources)
+        {
 
+            if (source.clip.name.Equals("Shot"))
+            {
+                attackSound = source;
+            }else if (source.clip.name.Equals("Human Footstep"))
+            {
+                moveAudio = source;
+            }
+            else if (source.clip.name.Equals("Human Scream"))
+            {
+                painAudio = source;
+            }
 
+        }
+    }
 }

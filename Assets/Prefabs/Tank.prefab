@@ -67,8 +67,9 @@ AudioSource:
   m_GameObject: {fileID: 151328}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c34d92bb58dd1a14db9e89d6188087ea, type: 3}
+  OutputAudioMixerGroup: {fileID: 24303646, guid: e5aef68acecb8d44c8fa5b2931653973,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: e2604cf773aae7a488a61f3a20c67723, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -139,11 +140,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd610a4eeb9fb604ba31ef779c32eb3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  frames: []
   MoveToRange: 20
   FireAtRange: 10
   Speed: 5
   FlameDamage: .100000001
+  KnockbackDamage: .100000001
   Health: 10
+  BaseHealth: 10
   ScorePoints: 10
   FireRate: .150000006
   MovementCoolDown: 1
@@ -152,6 +156,8 @@ MonoBehaviour:
   DamageValue: 5
   isOnFire: 0
   isFleeing: 0
+  isFiring: 0
+  currentMovementTarget: {x: 0, y: 0, z: 0}
 --- !u!212 &21275996
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -189,6 +195,15 @@ Prefab:
       propertyPath: m_Constraints
       value: 112
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e2604cf773aae7a488a61f3a20c67723, type: 3}
+    - target: {fileID: 0}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24303646, guid: e5aef68acecb8d44c8fa5b2931653973,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 151328}

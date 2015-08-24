@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
+//using System.Collections;
 using System.Collections.Generic;
 using ParticlePlayground;
-using UnityEngine.Rendering;
+//using UnityEngine.Rendering;
 
 public abstract class Enemy : MonoBehaviour
 {
@@ -10,6 +10,8 @@ public abstract class Enemy : MonoBehaviour
     protected GameObject player;
 
     public Sprite[] frames;
+
+    public AudioClip deathClip;
 
     public float MoveToRange = 20f;
     public float FireAtRange = 10f;
@@ -42,11 +44,16 @@ public abstract class Enemy : MonoBehaviour
     private Rigidbody enemyRigidBody;
     private PlaygroundEventC playgroundEvent;
 
+
     private CityManager theCity;
 
     protected int male = 0;
     protected float animTime;
     protected int animFrame;
+    protected AudioSource moveAudio;
+    protected AudioSource painAudio;
+    
+
 
     protected int faceDir;
 
@@ -56,6 +63,7 @@ public abstract class Enemy : MonoBehaviour
         playgroundEvent = PlaygroundC.GetEvent(0, PlaygroundC.GetParticles(0));
         playgroundEvent.particleEvent += OnEvent;
 
+        SetUpAudio();
 
     }
 
@@ -90,7 +98,10 @@ public abstract class Enemy : MonoBehaviour
             }
         }
     }
+    protected abstract void SetUpAudio();
 
+
+       
 
     protected void Escape()
     {
@@ -105,6 +116,7 @@ public abstract class Enemy : MonoBehaviour
 
         //if (newX < theCity.getCityBoundryWidth() && newX > 0)
         //{
+       // playAudio(moveAudio);
         currentMovementTarget = transform.position;
         currentMovementTarget.x = newX;
         //    //transform.position += getMoveTowardsVector(transform.position, currentMovementTarget);
@@ -129,7 +141,7 @@ public abstract class Enemy : MonoBehaviour
             //{
             //    getExploringPoint();
             //}
-
+            playAudio(painAudio);
             //Debug.Log("Update() Health" + Health);
         }
 
@@ -137,7 +149,7 @@ public abstract class Enemy : MonoBehaviour
         {
             GameManager.Instance.score += ScorePoints;
             GameManager.Instance.DamageCost += DamageValue;
-
+            playDeathScream();
             //Debug.Log("Update() Score " + GameManager.Instance.score);
             gameObject.SetActive(false);
         }
@@ -167,7 +179,7 @@ public abstract class Enemy : MonoBehaviour
         //    transform.position += getMoveTowardsVector(transform.position, currentMovementTarget);
 
         //}
-
+       // playAudio(moveAudio);
         transform.position += getMoveTowardsVector(transform.position, currentMovementTarget);
 
 
@@ -280,5 +292,28 @@ public abstract class Enemy : MonoBehaviour
                 Escape();
             }
         }
+    }
+
+    protected void playAudio(AudioSource source)
+    {
+
+
+        if (!source.isPlaying&&gameObject.activeSelf)
+        {
+            source.Play();
+        }
+    }
+
+    private void playDeathScream()
+    {
+        Debug.Log("playDeathScream() Playing death scream");
+        GameObject dap = EnemyManager.Instance.GetOne("DroppableAudioPlayer");
+        dap.transform.position = transform.position;
+        AudioSource dropSource= GetComponent<AudioSource>();
+        dropSource.clip = deathClip;
+     
+        dap.SetActive(true);
+        dropSource.Play();
+
     }
 }
