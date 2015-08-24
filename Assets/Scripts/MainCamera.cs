@@ -16,8 +16,9 @@ public class MainCamera : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-        Target = new Vector3(Kaiju.transform.position.x, Kaiju.transform.position.y, Kaiju.Depth*2f) + Offset;
-	    transform.position = Vector3.Lerp(transform.position, Target, Time.deltaTime*Speed);
+        //Target = new Vector3(Kaiju.transform.position.x, Kaiju.transform.position.y, Kaiju.Depth*2f) + Offset;
+        Target = Kaiju.transform.position+ Offset;
+        transform.position = Vector3.Lerp(transform.position, Target, Time.deltaTime*Speed);
 	}
 
     

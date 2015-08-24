@@ -3,8 +3,8 @@ using System.Collections;
 
 public class Trooper : Enemy
 {
+    private SpriteRenderer spriteRender;
 
-       
     LineRenderer gunLine;
     public int DamagePerShot = 1;
    
@@ -23,37 +23,66 @@ public class Trooper : Enemy
     
     protected override void Update()
     {
-        if (Vector3.Distance(transform.position, player.transform.position)<FireAtRange && !isFleeing && !isOnFire)
-        {
-            isFiring = true;
+        
+            if (Vector3.Distance(transform.position, player.transform.position) < FireAtRange && !isFleeing && !isOnFire)
+            {
+                isFiring = true;
 
-            
-        }
-        else if (Vector3.Distance(transform.position, player.transform.position) < MoveToRange)
-        {
-            isFiring = false;
 
-            currentMovementTarget = player.transform.position +
-                                    ((player.transform.position - transform.position).normalized*FireAtRange);
-            //transform.position += getMoveTowardsVector(transform.position, player.transform.position);
-        }
-        else
-        {
-            isFiring = false;
-            currentMovementTarget = getExploringPoint();
-        }
+            }
+            else if (Vector3.Distance(transform.position, player.transform.position) < MoveToRange)
+            {
+                isFiring = false;
+
+                currentMovementTarget = RandomPoint(player.transform.position +
+                                        ((transform.position - player.transform.position).normalized*(FireAtRange-1f)), 1f);
+                //transform.position += getMoveTowardsVector(transform.position, player.transform.position);
+            }
+            else
+            {
+                isFiring = false;
+                currentMovementTarget = getExploringPoint();
+            }
+       
 
         gunLine.enabled = false;
 
 
         if (isFiring)
         {
-            if (coolDownTimer >= FireRate)
+            currentMovementTarget = transform.position;
+
+            if (coolDownTimer >= FireRate && Random.Range(0, 100) == 0)
             {
                 coolDownTimer = 0f;
                 Fire();
             }
+
+            spriteRender.sprite = frames[2];
+
+            if (player.transform.position.x > transform.position.x) faceDir = -1;
+            else faceDir = 1;
         }
+        else
+        {
+            animTime += Time.deltaTime;
+            if (animTime >= 0.1f)
+            {
+                animTime = 0f;
+                animFrame = 1 - animFrame;
+
+                spriteRender.sprite = frames[animFrame];
+            }
+
+            
+        }
+
+        if (transform.position.x < currentMovementTarget.x)
+            faceDir = -1;
+        else if (transform.position.x > currentMovementTarget.x)
+            faceDir = 1;
+
+        spriteRender.transform.localScale = new Vector3(1f * faceDir, 1f, 1f);
 
         base.Update();
     }
@@ -78,10 +107,17 @@ public class Trooper : Enemy
 
     }
 
-    
 
 
 
+    public override void Init()
+    {
+        spriteRender = transform.FindChild("Sprite").GetComponent<SpriteRenderer>();
+
+        spriteRender.color = new Color(0.1f, 0.2f, 0.5f);
+
+        base.Init();
+    }
 
 
 

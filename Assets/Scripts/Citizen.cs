@@ -3,8 +3,8 @@ using System.Collections;
 
 public class Citizen : Enemy
 {
-
-
+    private SpriteRenderer spriteRender;
+        
    
     // Update is called once per frame
     protected override void Update()
@@ -36,7 +36,7 @@ public class Citizen : Enemy
             movementCooldowntimer = 0f;
         }
 
-        if (!isOnFire && Vector3.Distance(player.transform.position, transform.position) < 5f)
+        if (!isOnFire && Vector3.Distance(player.transform.position, transform.position) < 2f)
         {
             isFleeing = true;
         }
@@ -53,13 +53,29 @@ public class Citizen : Enemy
         {
             Escape();
 
-            if (Vector3.Distance(player.transform.position, transform.position) > 10f)
+            if (Vector3.Distance(player.transform.position, transform.position) > 5f)
                 isFleeing = false;
         }
 
 
         // transform.position += getMoveTowardsVector(transform.position, currentMovementTarget);
 
+
+        animTime += Time.deltaTime;
+        if (animTime >= 0.1f)
+        {
+            animTime = 0f;
+            animFrame = 1 - animFrame;
+
+            spriteRender.sprite = frames[(2 * male) + animFrame];
+        }
+
+        if (transform.position.x < currentMovementTarget.x)
+            faceDir = -1;
+        else if (transform.position.x > currentMovementTarget.x)
+            faceDir = 1;
+
+        spriteRender.transform.localScale = new Vector3(1f * faceDir, 1f, 1f);
 
         base.Update();
 
@@ -68,5 +84,14 @@ public class Citizen : Enemy
     protected override void Fire()
     {
 
+    }
+
+    public override void Init()
+    {
+        spriteRender = transform.FindChild("Sprite").GetComponent<SpriteRenderer>();
+
+        spriteRender.color = new Color(Random.Range(0.2f, 1f), Random.Range(0.2f, 1f), Random.Range(0.2f, 1f));
+
+        base.Init();
     }
 }

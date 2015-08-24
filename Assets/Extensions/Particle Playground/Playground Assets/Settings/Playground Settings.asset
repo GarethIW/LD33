@@ -16,9 +16,9 @@ MonoBehaviour:
   presetsHasPrefabConnection: 0
   hierarchyIcon: 1
   extensionIconSize: 1
-  settingsFoldout: 0
+  settingsFoldout: 1
   settingsLanguageFoldout: 0
-  settingsPathFoldout: 0
+  settingsPathFoldout: 1
   extensionsFoldout: 1
   presetsFoldout: 1
   playgroundManagerFoldout: 1
@@ -48,8 +48,8 @@ MonoBehaviour:
   particleSettingsEmissionFoldout: 1
   particleSettingsSizeFoldout: 1
   particleSettingsRotationFoldout: 0
-  particleSettingsLifetimeFoldout: 0
-  particleSettingsMaskFoldout: 0
+  particleSettingsLifetimeFoldout: 1
+  particleSettingsMaskFoldout: 1
   forceAnnihilationFoldout: 0
   forceInitialVelocityFoldout: 1
   forceLifetimeVelocityFoldout: 0
@@ -80,7 +80,7 @@ MonoBehaviour:
   nodesFoldout: 1
   usedByFoldout: 0
   splineAdvancedFoldout: 1
-  playgroundPath: Particle Playground/
+  playgroundPath: Extensions/Particle Playground/
   examplePresetPath: Playground Assets/Presets/
   presetPath: Resources/Presets/
   iconPath: Graphics/Editor/Icons/
