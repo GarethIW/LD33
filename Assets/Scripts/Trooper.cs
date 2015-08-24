@@ -15,12 +15,7 @@ public class Trooper : Enemy
         base.Awake();
 
         gunLine = GetComponent<LineRenderer>();
-
-
     }
-
-
-
 
     protected override void Update()
     {
@@ -93,6 +88,8 @@ public class Trooper : Enemy
 
     protected override void Fire()
     {
+        if (player.GetComponent<Kaiju>().Dead) return;
+
         gunLine.enabled = true;
         attackSound.Play();
         gunLine.SetPosition(0, transform.position);
@@ -106,7 +103,7 @@ public class Trooper : Enemy
 
         Kaiju kaiju = player.GetComponent<Kaiju>();
 
-        kaiju.hp -= DamagePerShot;
+        kaiju.Health -= DamagePerShot;
         for (int i = 0; i < 10; i++)
             PlaygroundC.GetParticles(3).Emit(targetPosition+ new Vector3(0f,0f,-0.3f), Random.insideUnitSphere * 0.5f);
 

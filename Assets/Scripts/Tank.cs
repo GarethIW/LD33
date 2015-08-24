@@ -103,9 +103,11 @@ public class Tank : Enemy
 
     protected override void Fire()
     {
+        if (player.GetComponent<Kaiju>().Dead) return;
+
         if (
-            !(player.transform.position.z > transform.position.z - 0.5f &&
-              player.transform.position.z < transform.position.z + 0.5f)) return;
+            !(player.transform.position.z > transform.position.z - 1f &&
+              player.transform.position.z < transform.position.z + 1f)) return;
 
         var p = ProjectileManager.Instance.GetOne("Projectile");
         if (p != null)

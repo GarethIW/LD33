@@ -5,6 +5,8 @@ public class GameManager : MonoBehaviour {
 
     public int score;
     public int DamageCost;
+    public int Civilians;
+    public int Military;
     public static GameManager Instance;
 
 	// Use this for initialization

@@ -71,6 +71,11 @@ public class Throwable : MonoBehaviour
                 if (hit.GetComponent<Enemy>() != null)
                     hit.GetComponent<Enemy>().KnockedBack();
             }
+
+            if (gameObject.name.Contains("Car"))
+                GameManager.Instance.DamageCost += 100;
+
+
         }
     }
 }

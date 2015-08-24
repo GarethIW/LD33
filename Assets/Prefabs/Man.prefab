@@ -304,19 +304,19 @@ MonoBehaviour:
   - {fileID: 21300002, guid: 517954588ac619741a5841867a92cacb, type: 3}
   - {fileID: 21300004, guid: 517954588ac619741a5841867a92cacb, type: 3}
   deathClip: {fileID: 8300000, guid: acedd9e8bd3a39e45a4c6d696d5d4542, type: 3}
-  MoveToRange: 10
+  MoveToRange: 20
   FireAtRange: 3
   Speed: 1
   FlameDamage: .100000001
   KnockbackDamage: 4
   Health: 10
   BaseHealth: 10
-  ScorePoints: 10
+  ScorePoints: 50
   FireRate: .150000006
   MovementCoolDown: .5
   coolDownTimer: 0
   movementCooldowntimer: 0
-  DamageValue: 5
+  DamageValue: 0
   isOnFire: 0
   isFleeing: 0
   isFiring: 0
@@ -459,6 +459,18 @@ Prefab:
       propertyPath: deathClip
       value: 
       objectReference: {fileID: 8300000, guid: acedd9e8bd3a39e45a4c6d696d5d4542, type: 3}
+    - target: {fileID: 0}
+      propertyPath: ScorePoints
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: DamageValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: MoveToRange
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 155232}

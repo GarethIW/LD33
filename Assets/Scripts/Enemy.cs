@@ -150,7 +150,7 @@ public abstract class Enemy : MonoBehaviour
         if (transform.gameObject.activeSelf && Health <= 0f)
         {
             GameManager.Instance.score += ScorePoints;
-            GameManager.Instance.DamageCost += DamageValue;
+            
             playDeathScream();
             //Debug.Log("Update() Score " + GameManager.Instance.score);
 
@@ -158,7 +158,16 @@ public abstract class Enemy : MonoBehaviour
             {
                 for (int i = 0; i < 50; i++)
                     PlaygroundC.GetParticles(3).Emit(transform.position + new Vector3(0f, Random.Range(0f, 0.3f), 0f), Random.insideUnitSphere * 0.5f);
+
+                if (GetComponent<Citizen>())
+                    GameManager.Instance.Civilians++;
+
+                if (GetComponent<Trooper>())
+                    GameManager.Instance.Military++;
             }
+
+            if (GetComponent<Tank>())
+                GameManager.Instance.DamageCost += DamageValue;
 
             gameObject.SetActive(false);
         }

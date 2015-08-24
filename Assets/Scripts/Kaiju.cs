@@ -11,6 +11,8 @@ public class Kaiju : MonoBehaviour
 
     public float Depth = 0f;
 
+    public bool Dead;
+
     public bool isClimbing = false;
     public bool isOnGround = false;
     public bool isJumping = false;
@@ -41,7 +43,8 @@ public class Kaiju : MonoBehaviour
     public float climbGravity = 1;
     public float jumpVelocity = 10f;
     public float maxSpeed = 100f;
-    public int hp = 10;
+    public int Health = 10;
+    public int BaseHealth = 10;
     string currentAnimation = "";
     bool hit = false;
     bool dead = false;
@@ -72,6 +75,8 @@ public class Kaiju : MonoBehaviour
         stompParticles = GameObject.Find("Explosion_circle").GetComponent<ParticleSystem>();
 
         handTransform = transform.Find("SkeletonUtility-Root/root/Hip/body/upperarm1/forearm1/hand1");
+
+        Health = BaseHealth;
     }
 
     // Update is called once per frame
@@ -88,173 +93,189 @@ public class Kaiju : MonoBehaviour
 
         Vector3 xy = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")).normalized;
 
-
-        if (!isClimbing && !isPickingUp && !isThrowing)
+        if (Health <= 0)
         {
-            rigidBody.useGravity = true;
-            rigidBody.constraints = RigidbodyConstraints.FreezeRotation;
-            gameObject.layer = 9;
-            collider.gameObject.layer = 9;
-            maxSpeed = 5f;
+            Dead = true;
+            SetAnimation("Dead", false);
+        }
 
-            if (x > 0)
+        if (!Dead)
+        {
+            if (!isClimbing && !isPickingUp && !isThrowing)
             {
-                skeletonAnimation.skeleton.FlipX = false;
-                faceDir = 1f;
-            }
-            else if (x < 0)
-            {
-                skeletonAnimation.skeleton.FlipX = true;
-                faceDir = -1f;
-            }
+                rigidBody.useGravity = true;
+                rigidBody.constraints = RigidbodyConstraints.FreezeRotation;
+                gameObject.layer = 9;
+                collider.gameObject.layer = 9;
+                maxSpeed = 5f;
 
-            if (absX > 0.7f && !isJumping)
-            {
-                SetAnimation(runAnimation, true);
-                //GetComponent<Rigidbody>().velocity = new Vector3(runVelocity * Mathf.Sign(x), GetComponent<Rigidbody>().velocity.y, GetComponent<Rigidbody>().velocity.z);
-            }
-            else if (absX > 0 && !isJumping)
-            {
-                SetAnimation(walkAnimation, true);
-                // GetComponent<Rigidbody>().velocity = new Vector3(walkVelocity * Mathf.Sign(x), GetComponent<Rigidbody>().velocity.y, GetComponent<Rigidbody>().velocity.z);
-            }
+                if (x > 0)
+                {
+                    skeletonAnimation.skeleton.FlipX = false;
+                    faceDir = 1f;
+                }
+                else if (x < 0)
+                {
+                    skeletonAnimation.skeleton.FlipX = true;
+                    faceDir = -1f;
+                }
+
+                if (absX > 0.7f && !isJumping)
+                {
+                    SetAnimation(runAnimation, true);
+                    //GetComponent<Rigidbody>().velocity = new Vector3(runVelocity * Mathf.Sign(x), GetComponent<Rigidbody>().velocity.y, GetComponent<Rigidbody>().velocity.z);
+                }
+                else if (absX > 0 && !isJumping)
+                {
+                    SetAnimation(walkAnimation, true);
+                    // GetComponent<Rigidbody>().velocity = new Vector3(walkVelocity * Mathf.Sign(x), GetComponent<Rigidbody>().velocity.y, GetComponent<Rigidbody>().velocity.z);
+                }
 
 
-            if (absY > 0.7f && !isJumping)
-            {
-                SetAnimation(runAnimation, true);
-                // GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<Rigidbody>().velocity.x, GetComponent<Rigidbody>().velocity.y, runVelocity * Mathf.Sign(y));
-            }
-            else if (absY > 0 && !isJumping)
-            {
-                SetAnimation(walkAnimation, true);
-                // GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<Rigidbody>().velocity.x, GetComponent<Rigidbody>().velocity.y, walkVelocity * Mathf.Sign(y));
-            }
+                if (absY > 0.7f && !isJumping)
+                {
+                    SetAnimation(runAnimation, true);
+                    // GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<Rigidbody>().velocity.x, GetComponent<Rigidbody>().velocity.y, runVelocity * Mathf.Sign(y));
+                }
+                else if (absY > 0 && !isJumping)
+                {
+                    SetAnimation(walkAnimation, true);
+                    // GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<Rigidbody>().velocity.x, GetComponent<Rigidbody>().velocity.y, walkVelocity * Mathf.Sign(y));
+                }
 
-            rigidBody.velocity = new Vector3(walkVelocity * xy.x, rigidBody.velocity.y,
-                walkVelocity * xy.z);
+                rigidBody.velocity = new Vector3(walkVelocity*xy.x, rigidBody.velocity.y,
+                    walkVelocity*xy.z);
 
-            if (absX <= 0 && absY <= 0 && !isJumping)
-            {
-                SetAnimation(idleAnimation, true);
-                rigidBody.velocity = new Vector3(0, rigidBody.velocity.y, 0);
+                if (absX <= 0 && absY <= 0 && !isJumping)
+                {
+                    SetAnimation(idleAnimation, true);
+                    rigidBody.velocity = new Vector3(0, rigidBody.velocity.y, 0);
+                }
+
+                if (CanClimb && Input.GetButtonDown("Climb"))
+                {
+                    isClimbing = true;
+                    gameObject.layer = 11;
+                    collider.gameObject.layer = 11;
+                    if (climbingSkyscraperSection != null)
+                    {
+                        float dir = transform.position.x > climbingSkyscraperSection.transform.parent.position.x
+                            ? -1f
+                            : 1f;
+                        if (dir == -1f) skeletonAnimation.skeleton.flipX = true;
+                        else skeletonAnimation.skeleton.flipX = false;
+                        transform.position =
+                            new Vector3(climbingSkyscraperSection.transform.parent.position.x + (0.9f*-dir),
+                                transform.position.y + 0.1f, climbingSkyscraperSection.transform.position.z - 0.1f);
+                        rigidBody.AddForce(0f, climbVelocity, 0f, ForceMode.Acceleration);
+                        climbingSkyscraperSection.GetComponent<SkyscraperSection>().ClimbedOn();
+                    }
+                }
+
+                if (isOnGround && Input.GetButtonDown("Jump"))
+                {
+                    rigidBody.AddForce(0f, jumpVelocity, 0f, ForceMode.Force);
+                    transform.position += new Vector3(0f, 0.1f, 0f);
+                    isJumping = true;
+                    isClimbing = false;
+                }
+
+                if (isOnGround && Input.GetButtonDown("Throw") && holdingObject == null)
+                {
+                    isPickingUp = true;
+                    pickupThrowTime = 0.25f;
+                    SetAnimation("Pickup", false);
+                }
+
+                if (isJumping)
+                {
+                    if (rigidBody.velocity.y > 0f)
+                        SetAnimation(jumpAnimation, true);
+                    if (rigidBody.velocity.y <= 0f)
+                        SetAnimation(fallAnimation, true);
+                }
             }
-
-            if (CanClimb && Input.GetButtonDown("Climb"))
+            else
             {
-                isClimbing = true;
+                isJumping = false;
+                rigidBody.useGravity = false;
+                rigidBody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ |
+                                        RigidbodyConstraints.FreezeRotation;
                 gameObject.layer = 11;
                 collider.gameObject.layer = 11;
-                if (climbingSkyscraperSection != null)
+                maxSpeed = 2f;
+
+                if (Input.GetButtonDown("Climb"))
                 {
-                    float dir = transform.position.x > climbingSkyscraperSection.transform.parent.position.x ? -1f : 1f;
-                    if (dir == -1f) skeletonAnimation.skeleton.flipX = true;
-                    else skeletonAnimation.skeleton.flipX = false;
-                    transform.position = new Vector3(climbingSkyscraperSection.transform.parent.position.x + (0.9f * -dir), transform.position.y+0.1f, climbingSkyscraperSection.transform.position.z-0.1f);
-                    rigidBody.AddForce(0f, climbVelocity, 0f, ForceMode.Acceleration);
-                    climbingSkyscraperSection.GetComponent<SkyscraperSection>().ClimbedOn();
+                    if (climbingSkyscraperSection != null)
+                    {
+                        float dir = transform.position.x > climbingSkyscraperSection.transform.parent.position.x
+                            ? -1f
+                            : 1f;
+                        if (dir == -1f) skeletonAnimation.skeleton.flipX = true;
+                        else skeletonAnimation.skeleton.flipX = false;
+
+
+                        transform.position =
+                            new Vector3(climbingSkyscraperSection.transform.parent.position.x + (0.9f*-dir),
+                                transform.position.y, climbingSkyscraperSection.transform.position.z - 0.1f);
+                        rigidBody.AddForce(0f, climbVelocity, 0f, ForceMode.Acceleration);
+                        climbingSkyscraperSection.GetComponent<SkyscraperSection>().ClimbedOn();
+
+                    }
+
+                }
+                else
+                {
+                    rigidBody.AddForce(0f, climbGravity + (-(transform.position.y*4f)), 0f, ForceMode.Acceleration);
+                }
+
+                if (isClimbing && rigidBody.velocity.y > 0f) SetAnimation("Climb", true);
+                else if (!isPickingUp && !isThrowing) SetAnimation(idleAnimation, true);
+            }
+
+            if (rigidBody.velocity.magnitude > maxSpeed)
+            {
+                rigidBody.velocity = rigidBody.velocity.normalized*maxSpeed;
+            }
+
+            if (Input.GetButtonDown("Throw") && holdingObject != null)
+            {
+                isThrowing = true;
+                pickupThrowTime = 0.5f;
+                SetAnimation("Throw", false);
+            }
+
+            if (isPickingUp || isThrowing)
+            {
+                pickupThrowTime -= Time.deltaTime;
+
+                if (isThrowing && pickupThrowTime <= 0.1f && holdingObject != null)
+                {
+                    Throw();
+                }
+
+                if (pickupThrowTime <= 0f)
+                {
+                    isPickingUp = false;
+                    isThrowing = false;
                 }
             }
 
-            if (isOnGround && Input.GetButtonDown("Jump"))
+            if ((isOnGround || isClimbing) && Input.GetButtonDown("Jump"))
             {
                 rigidBody.AddForce(0f, jumpVelocity, 0f, ForceMode.Force);
-                transform.position += new Vector3(0f,0.1f,0f);
+                transform.position += new Vector3(0f, 0.01f, 0f);
                 isJumping = true;
                 isClimbing = false;
             }
 
-            if (isOnGround && Input.GetButtonDown("Throw") && holdingObject==null)
+            if (Input.GetButton("Breathe"))
             {
-                isPickingUp = true;
-                pickupThrowTime = 0.25f;
-                SetAnimation("Pickup", false);
+                for (int i = 0; i < 50; i++)
+                    breathParticles.Emit(BreathTransform.position,
+                        new Vector3(Random.Range(8f, 15f)*faceDir, Random.Range(-5.4f, -5.6f), 0f));
             }
-
-            if (isJumping)
-            {
-                if(rigidBody.velocity.y>0f)
-                    SetAnimation(jumpAnimation, true);
-                if(rigidBody.velocity.y<=0f)
-                    SetAnimation(fallAnimation, true);
-            }
-        }
-        else
-        {
-            isJumping = false;
-            rigidBody.useGravity = false;
-            rigidBody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
-            gameObject.layer = 11;
-            collider.gameObject.layer = 11;
-            maxSpeed = 2f;
-
-            if (Input.GetButtonDown("Climb"))
-            {
-                if (climbingSkyscraperSection != null)
-                {
-                    float dir = transform.position.x > climbingSkyscraperSection.transform.parent.position.x ? -1f : 1f;
-                    if (dir == -1f) skeletonAnimation.skeleton.flipX = true;
-                    else skeletonAnimation.skeleton.flipX = false;
-
-                   
-                    transform.position =
-                        new Vector3(climbingSkyscraperSection.transform.parent.position.x + (0.9f*-dir),
-                            transform.position.y, climbingSkyscraperSection.transform.position.z - 0.1f);
-                    rigidBody.AddForce(0f, climbVelocity, 0f, ForceMode.Acceleration);
-                    climbingSkyscraperSection.GetComponent<SkyscraperSection>().ClimbedOn();
-              
-                }
-
-            }
-            else
-            {
-                rigidBody.AddForce(0f, climbGravity+(-(transform.position.y*4f)), 0f, ForceMode.Acceleration);
-            }
-
-            if(isClimbing && rigidBody.velocity.y>0f) SetAnimation("Climb", true);
-            else if(!isPickingUp && !isThrowing) SetAnimation(idleAnimation, true);
-        }
-
-        if (rigidBody.velocity.magnitude > maxSpeed)
-        {
-            rigidBody.velocity = rigidBody.velocity.normalized * maxSpeed;
-        }
-
-        if (Input.GetButtonDown("Throw") && holdingObject != null)
-        {
-            isThrowing = true;
-            pickupThrowTime = 0.5f;
-            SetAnimation("Throw", false);
-        }
-
-        if (isPickingUp || isThrowing)
-        {
-            pickupThrowTime -= Time.deltaTime;
-
-            if (isThrowing && pickupThrowTime <= 0.1f && holdingObject != null)
-            {
-                Throw();
-            }
-
-            if (pickupThrowTime <= 0f)
-            {
-                isPickingUp = false;
-                isThrowing = false;
-            }
-        }
-
-        if ((isOnGround || isClimbing) && Input.GetButtonDown("Jump"))
-        {
-            rigidBody.AddForce(0f, jumpVelocity, 0f, ForceMode.Force);
-            transform.position += new Vector3(0f, 0.01f, 0f);
-            isJumping = true;
-            isClimbing = false;
-        }
-
-        if (Input.GetButton("Breathe"))
-        {
-            for(int i=0;i<50;i++)
-                breathParticles.Emit(BreathTransform.position,new Vector3(Random.Range(8f, 15f) * faceDir, Random.Range(-5.4f, -5.6f), 0f));
         }
 
         if (prevTint != Tint)
@@ -347,7 +368,7 @@ public class Kaiju : MonoBehaviour
 
     public void HitByProjectile(Vector3 pos)
     {
-        hp -= 50;
+        Health -= 50;
         for (int i = 0; i < 50; i++)
             PlaygroundC.GetParticles(3).Emit(pos + new Vector3(Random.Range(-0.25f, 0.25f), Random.Range(-0.25f, 0.25f), -0.1f), Random.insideUnitSphere * 0.5f);
     }
