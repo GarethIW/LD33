@@ -55,7 +55,7 @@ namespace HTTP
             if (mimeType == null){
                 mimeType = "application/octet-stream";
             }
-            var contents = new FileInfo(path).Open(FileMode.Open);
+            var contents = new FileInfo(path).Open(FileMode.Open, FileAccess.ReadWrite);
             stream.AddPart(fieldName, mimeType, contents, fieldName + ".dat");
         }
     }

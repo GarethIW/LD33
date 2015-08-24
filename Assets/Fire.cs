@@ -9,12 +9,14 @@ public class Fire : MonoBehaviour
     public Transform Target;
     public Vector3 Offset;
 
+    public bool isSmall;
+
     private PlaygroundParticlesC fireParticles;
 
 	// Use this for initialization
 	void Start ()
 	{
-	    fireParticles = PlaygroundC.GetParticles(1);
+	    fireParticles = PlaygroundC.GetParticles(isSmall?2:1);
 	}
 	
 	// Update is called once per frame
@@ -30,7 +32,7 @@ public class Fire : MonoBehaviour
 	        }
 	    }
 
-	    for (int i = 0; i < 10; i++)
+	    for (int i = 0; i < (isSmall ? 20 : 10); i++)
 	        fireParticles.Emit(transform.position);
 
 	    Health -= Random.Range(0f, 0.01f);

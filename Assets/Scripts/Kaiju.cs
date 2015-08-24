@@ -253,7 +253,7 @@ public class Kaiju : MonoBehaviour
         if (Input.GetButton("Breathe"))
         {
             for(int i=0;i<50;i++)
-                breathParticles.Emit(BreathTransform.position,new Vector3(Random.Range(1f, 8f) * faceDir, Random.Range(-3.4f, -3.6f), 0f));
+                breathParticles.Emit(BreathTransform.position,new Vector3(Random.Range(8f, 15f) * faceDir, Random.Range(-5.4f, -5.6f), 0f));
         }
 
         if (prevTint != Tint)
@@ -325,6 +325,9 @@ public class Kaiju : MonoBehaviour
                 {
                     if (hit.GetComponent<Rigidbody>() && !hit.GetComponent<SkyscraperSection>())
                         hit.GetComponent<Rigidbody>().AddExplosionForce(200f, transform.position, 3f, 2f);
+
+                    if (hit.GetComponent<Enemy>() != null)
+                        hit.GetComponent<Enemy>().KnockedBack();
                 }
 
 

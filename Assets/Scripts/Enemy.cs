@@ -2,18 +2,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using ParticlePlayground;
+using UnityEngine.Rendering;
 
 public abstract class Enemy : MonoBehaviour
 {
 
     protected GameObject player;
 
+    public Sprite[] frames;
 
     public float MoveToRange = 20f;
     public float FireAtRange = 10f;
 
     public float Speed = 5f;
     public float FlameDamage = 0.1f;
+    public float KnockbackDamage = 0.1f;
     public float Health = 10f;
     public float BaseHealth = 10f;
     public int ScorePoints = 10;
@@ -41,7 +44,11 @@ public abstract class Enemy : MonoBehaviour
 
     private CityManager theCity;
 
+    protected int male = 0;
+    protected float animTime;
+    protected int animFrame;
 
+    protected int faceDir;
 
     // Use this for initialization
     void Start()
@@ -68,12 +75,12 @@ public abstract class Enemy : MonoBehaviour
         {
             Health -= FlameDamage;
             //Debug.Log(" OnEvent() Health:" + Health);
-            if (Random.Range(0, 500) == 0)
+            if (Random.Range(0, 10) == 0)
             {
-                var fire = FireManager.Instance.GetOne("Fire");
+                var fire = FireManager.Instance.GetOne("SmallFire");
                 if (fire != null)
                 {
-                    fire.GetComponent<Fire>().Init(transform, new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.25f, 0.25f), -0.01f));
+                    fire.GetComponent<Fire>().Init(transform, new Vector3(Random.Range(-0.1f, 0.1f), Random.Range(0f, 0.4f), -0.01f));
                     fires.Add(fire.GetComponent<Fire>());
                     //fire.transform.position = transform.position + new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.25f, 0.25f), -0.01f);
                     //fire.GetComponent<Fire>().Init();
@@ -98,14 +105,14 @@ public abstract class Enemy : MonoBehaviour
 
         //if (newX < theCity.getCityBoundryWidth() && newX > 0)
         //{
-            currentMovementTarget = transform.position;
-            currentMovementTarget.x = newX;
+        currentMovementTarget = transform.position;
+        currentMovementTarget.x = newX;
         //    //transform.position += getMoveTowardsVector(transform.position, currentMovementTarget);
         //}
     }
 
 
-  
+
 
     // Update is called once per frame
     protected virtual void Update()
@@ -163,8 +170,14 @@ public abstract class Enemy : MonoBehaviour
 
         transform.position += getMoveTowardsVector(transform.position, currentMovementTarget);
 
+
+
+
+
+
+
         int fireCount = 0;
-        for(int f=fires.Count-1;f>=0;f--)
+        for (int f = fires.Count - 1; f >= 0; f--)
         {
             if (fires[f].Health <= 0 || !fires[f].gameObject.activeSelf)
             {
@@ -174,6 +187,8 @@ public abstract class Enemy : MonoBehaviour
         }
 
         isOnFire = fireCount > 0;
+
+
     }
 
     protected abstract void Fire();
@@ -240,7 +255,30 @@ public abstract class Enemy : MonoBehaviour
     public virtual void Init()
     {
         Health = BaseHealth;
+        male = Random.Range(0, 2);
     }
 
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.GetComponentInParent<Kaiju>()!=null)
+        {
+            //Debug.Log("Squished!");
+            Health = 0f;
+        }
+    }
 
+    public void KnockedBack()
+    {
+        Health -= KnockbackDamage;
+        if (Random.Range(0, 5) == 0)
+        {
+            var fire = FireManager.Instance.GetOne("SmallFire");
+            if (fire != null)
+            {
+                fire.GetComponent<Fire>().Init(transform, new Vector3(Random.Range(-0.1f, 0.1f), Random.Range(0f, 0.4f), -0.01f));
+                fires.Add(fire.GetComponent<Fire>());
+                Escape();
+            }
+        }
+    }
 }
