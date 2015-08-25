@@ -264,19 +264,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   frames: []
-  MoveToRange: 10
+  deathClip: {fileID: 0}
+  MoveToRange: 20
   FireAtRange: 7
   Speed: .5
   FlameDamage: .100000001
   KnockbackDamage: 5
   Health: 100
   BaseHealth: 100
-  ScorePoints: 10
+  ScorePoints: 5000
   FireRate: 3
   MovementCoolDown: 1
   coolDownTimer: 0
   movementCooldowntimer: 0
-  DamageValue: 5
+  DamageValue: 5000
   isOnFire: 0
   isFleeing: 0
   isFiring: 0
@@ -330,9 +331,6 @@ Prefab:
       value: 
       objectReference: {fileID: 24303646, guid: e5aef68acecb8d44c8fa5b2931653973,
         type: 2}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_LocalScale.y
       value: .5
@@ -343,7 +341,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: MoveToRange
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: FireAtRange
@@ -384,6 +382,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: FireRate
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: DamageValue
+      value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ScorePoints
+      value: 5000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

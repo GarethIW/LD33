@@ -227,8 +227,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 1
-  DamageCost: 1000
-  Score: 5
+  DamageCost: 10000
+  Score: 10000
   hasBillBoard: 0
   BaseDmgMaterial: {fileID: 2100000, guid: 7ffb47b0bd57d024ca24c5e9e1e56132, type: 2}
   MidDmgMaterial: {fileID: 2100000, guid: feecd2ca93d175846990cf1b0985b1be, type: 2}
@@ -367,8 +367,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_PlayOnAwake
       value: 0
-      propertyPath: m_Mass
-      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Score
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: DamageCost
+      value: 10000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
