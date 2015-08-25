@@ -35,7 +35,7 @@ Material:
         second:
           m_Texture: {fileID: 2800000, guid: df0ffcc7ed4d822408d84a34b9d048e0, type: 3}
           m_Scale: {x: 1, y: 1}
-          m_Offset: {x: .935621142, y: .556303561}
+          m_Offset: {x: .186966658, y: .850173712}
       data:
         first:
           name: _StaticMask
