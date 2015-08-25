@@ -35,11 +35,7 @@ Material:
         second:
           m_Texture: {fileID: 2800000, guid: df0ffcc7ed4d822408d84a34b9d048e0, type: 3}
           m_Scale: {x: 1, y: 1}
-<<<<<<< HEAD
-          m_Offset: {x: .924452186, y: .839058995}
-=======
-          m_Offset: {x: .186966658, y: .850173712}
->>>>>>> origin/master
+          m_Offset: {x: .546535313, y: .616327107}
       data:
         first:
           name: _StaticMask
@@ -70,19 +66,11 @@ Material:
       data:
         first:
           name: _NoiseMagnetude
-<<<<<<< HEAD
-        second: .0500000231
+        second: 1
       data:
         first:
           name: _StaticMagnetude
-        second: .00400000298
-=======
-        second: .0500000007
-      data:
-        first:
-          name: _StaticMagnetude
-        second: .00400000019
->>>>>>> origin/master
+        second: 1
       data:
         first:
           name: _Mobile

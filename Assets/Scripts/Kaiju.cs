@@ -307,7 +307,7 @@ public class Kaiju : MonoBehaviour
                 isClimbing = false;
             }
 
-            if (Input.GetButton("Breathe"))
+            if (Input.GetButton("Breathe") || Input.GetAxisRaw("Breathe")>0)
             {
                 audioSources["Fire"].UnPause();
                 for (int i = 0; i < 50; i++)

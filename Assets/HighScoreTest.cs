@@ -9,8 +9,7 @@ using System.Collections.Generic;
 public class HighScoreTest : MonoBehaviour
 {
 
-    public InputField name;
-    public InputField score;
+    public InputField Name;
 
     private string playerId;
     public HighScorePlayerRow[] AllHighScores;
@@ -19,9 +18,14 @@ public class HighScoreTest : MonoBehaviour
     public HighScorePlayerRow[] AllHighScoresToday;
     public HighScorePlayerRow[] PlayerHighScoresToday;
 
+    public Text Civ;
+    public Text Mil;
+    public Text Prop;
+    public Text Score;
+
 
     public GameObject AllScorePanels;
-
+    public GameObject SubmitPanel;
 
 
     // Use this for initialization
@@ -33,7 +37,14 @@ public class HighScoreTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.Instance == null) return;
 
+        if (Civ == null) return;
+
+        Civ.text = GameManager.Instance.Civilians.ToString();
+        Mil.text = GameManager.Instance.Military.ToString();
+        Prop.text = GameManager.Instance.DamageCost.ToString();
+        Score.text = GameManager.Instance.score.ToString();
     }
 
     public void SubmitScore()
@@ -42,8 +53,8 @@ public class HighScoreTest : MonoBehaviour
         playerId = Guid.NewGuid().ToString().Replace("-", "");
         Hashtable data = new Hashtable();
         data.Add("playerId", playerId);
-        data.Add("name", name.text);
-        data.Add("score", Convert.ToInt32(score.text));
+        data.Add("name", Name.text);
+        data.Add("score", GameManager.Instance.score);
 
         string key = "063f5e89611ff77b" + data["playerId"] + data["score"];
         var bytes = Encoding.UTF8.GetBytes("068d900156e6603d7a804b29570550052e14f42f0ce01dc92b803ec95b886a4c");
@@ -113,10 +124,11 @@ public class HighScoreTest : MonoBehaviour
                                 int cc = 0;
                                 int index = getIndexNumber(i, results.Count);
 
-                                for (int x = index; x <= index + 9; x++)
+                                if (index < 0) index = 0;
+                                for (int x = index; x <= ((index + 9 < results.Count) ? index + 9 : results.Count - 1); x++)
                                 {
 
-                                    if (i + x <= results.Count)
+                                    if (i + x <= results.Count && i + x >= 0)
                                     {
 
 
@@ -126,7 +138,7 @@ public class HighScoreTest : MonoBehaviour
                                         Int32 rankPlayerScore = (Int32)playerRankResult["score"];
                                         string rankDate = (string)playerRankResult["time"];
 
-                                        PlayerHighScores[cc].SetScores(rankPlayer, rankPlayerScore.ToString(), (i - x).ToString());
+                                        PlayerHighScores[cc].SetScores(rankPlayer, rankPlayerScore.ToString(), (i +cc).ToString());
                                         cc++;
                                     }
                                 }
@@ -144,13 +156,18 @@ public class HighScoreTest : MonoBehaviour
                     //Hashtable getResult = getScores.response.Object;
 
                 });
+
+                getTodaysScores();
             }
 
         });
 
-        getTodaysScores();
-        AllScorePanels.SetActive(true);
 
+        Debug.Log("unz");
+
+        SubmitPanel.SetActive(false);
+
+        AllScorePanels.SetActive(true);
 
     }
 
@@ -220,6 +237,16 @@ public class HighScoreTest : MonoBehaviour
         return sbinary;
     }
 
+    public void PlayAgain()
+    {
+        Application.LoadLevel(0);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
     void getTodaysScores()
     {
        
@@ -263,12 +290,12 @@ public class HighScoreTest : MonoBehaviour
                                 int cc = 0;
                                 int index = getIndexNumber(i, results.Count);
 
-                                for (int x = index; x <= index + 9; x++)
+                                for (int x = index; x <= ((index + 9<results.Count)?index+9:results.Count-1); x++)
                                 {
 
-                                    if (i + x <= results.Count)
+                                    if (i + x <= results.Count && i+x>=0)
                                     {
-
+                                        
 
                                         Hashtable playerRankResult = (Hashtable)results[i + x];
                                         string rankPlayer = (string)playerRankResult["name"];
@@ -276,7 +303,7 @@ public class HighScoreTest : MonoBehaviour
                                         Int32 rankPlayerScore = (Int32)playerRankResult["score"];
                                         string rankDate = (string)playerRankResult["time"];
 
-                                        PlayerHighScoresToday[cc].SetScores(rankPlayer, rankPlayerScore.ToString(), (i - x).ToString());
+                                        PlayerHighScoresToday[cc].SetScores(rankPlayer, rankPlayerScore.ToString(), (i + cc).ToString());
                                         cc++;
                                     }
                                 }

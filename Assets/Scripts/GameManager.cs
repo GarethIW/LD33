@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public Camera UiCamera;
     public AudioMixerGroup Mixer;
 
+    public GameObject Scores;
+
     public float DeadTime = 8f;
 
     public int score;
@@ -20,6 +22,8 @@ public class GameManager : MonoBehaviour
 
     private float fadeInTime;
     private float musicTime;
+
+    private bool scoresOpened = false;
 
     Dictionary<string, AudioSource> audioSources = new Dictionary<string, AudioSource>();
 
@@ -84,6 +88,15 @@ public class GameManager : MonoBehaviour
 
                 Mixer.audioMixer.TransitionToSnapshots(new[] { Mixer.audioMixer.FindSnapshot("Intro") }, new[] { 1f }, 3f);
             }
+
+	        if (DeadTime < -5f)
+	        {
+	            if (!scoresOpened)
+	            {
+	                Scores.SetActive(true);
+	                scoresOpened = true;
+	            }
+	        }
 	    }
           
     }
