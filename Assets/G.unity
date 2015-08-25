@@ -2223,7 +2223,7 @@ MonoBehaviour:
   localTime: 0
   localDeltaTime: 0
   previousActiveState: 0
-  simulationStarted: .190737873
+  simulationStarted: .22023572
   loopExceeded: 0
   loopExceededOnParticle: -1
 --- !u!199 &543457199
@@ -3823,7 +3823,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &869230124
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6868,7 +6868,7 @@ MonoBehaviour:
   localTime: 0
   localDeltaTime: 0
   previousActiveState: 0
-  simulationStarted: .190737873
+  simulationStarted: .22023572
   loopExceeded: 0
   loopExceededOnParticle: -1
 --- !u!199 &1422105919
@@ -8775,7 +8775,7 @@ MonoBehaviour:
   localTime: 0
   localDeltaTime: 0
   previousActiveState: 0
-  simulationStarted: .190737873
+  simulationStarted: .22023572
   loopExceeded: 0
   loopExceededOnParticle: -1
 --- !u!199 &1440969123
@@ -10996,7 +10996,7 @@ MonoBehaviour:
   localTime: 0
   localDeltaTime: 0
   previousActiveState: 0
-  simulationStarted: .190737873
+  simulationStarted: .22023572
   loopExceeded: 0
   loopExceededOnParticle: -1
 --- !u!199 &1496913577

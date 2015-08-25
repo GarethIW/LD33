@@ -5,6 +5,8 @@ using System.Security.Cryptography;
 using System.Text;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.IO;
+using System.Net;
 
 public class HighScoreTest : MonoBehaviour
 {
@@ -47,6 +49,8 @@ public class HighScoreTest : MonoBehaviour
         Score.text = GameManager.Instance.score.ToString();
     }
 
+  
+
     public void SubmitScore()
     {
 
@@ -65,7 +69,33 @@ public class HighScoreTest : MonoBehaviour
             //Console.WriteLine("Result: {0}", ByteToString(hmacsha256.Hash));
         }
 
+        //var headers = new Dictionary<string, string>();
+        //headers.Add("X-HTTP-Method-Override", "PUT");
+        //string unz = JSON.JsonEncode(data);
+        //byte[] _putBytes = Encoding.UTF8.GetBytes(unz);
+        //var req = new UnityEngine.WWW("https://api.leaderboards.io/leaderboard/063f5e89611ff77b/score", _putBytes, headers);
+        //StartCoroutine(WaitForRequest(req));
 
+
+
+        //var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://api.leaderboards.io/leaderboard/063f5e89611ff77b/score");
+        //httpWebRequest.ContentType = "text/json";
+        //httpWebRequest.Method = "PUT";
+        //ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
+
+        //using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+        //{
+        //    streamWriter.Write(unz);
+        //}
+        //var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+        //using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+        //{
+        //    var responseText = streamReader.ReadToEnd();
+        //    //Now you have your response.
+        //    //or false depending on information in the response
+        //    Debug.Log(responseText);
+        //}
 
 
 
@@ -81,6 +111,7 @@ public class HighScoreTest : MonoBehaviour
             // note that if you want to send json that isn't either an object ({...}) or an array ([...])
             // that you should use JSON.JsonDecode directly on the response.Text, Object and Array are
             // only provided for convenience
+            Debug.LogError(request.exception);
             Hashtable result = request.response.Object;
             if (result != null)
             {
