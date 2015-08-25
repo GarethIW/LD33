@@ -91,6 +91,7 @@ public class Trooper : Enemy
         if (player.GetComponent<Kaiju>().Dead) return;
 
         gunLine.enabled = true;
+        attackSound.pitch = Random.Range(0.9f, 1.1f);
         attackSound.Play();
         gunLine.SetPosition(0, transform.position);
 
@@ -130,7 +131,8 @@ public class Trooper : Enemy
             if (source.clip.name.Equals("Shot"))
             {
                 attackSound = source;
-            }else if (source.clip.name.Equals("Human Footstep"))
+            }
+            else if (source.clip.name.Equals("Human Footstep"))
             {
                 moveAudio = source;
             }

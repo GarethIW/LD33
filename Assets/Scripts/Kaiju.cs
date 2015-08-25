@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 using System.Reflection;
 using ParticlePlayground;
 
@@ -26,6 +26,8 @@ public class Kaiju : MonoBehaviour
     public Transform BreathTransform;
 
     public Color Tint;
+
+    private float roarTime = 6;
 
     SkeletonAnimation skeletonAnimation;
     public string idleAnimation = "empty";
@@ -58,17 +60,21 @@ public class Kaiju : MonoBehaviour
     private ParticleSystem stompParticles;
     private Transform handTransform;
 
+    Dictionary<string,AudioSource> audioSources = new Dictionary<string, AudioSource>();
+
     private float pickupThrowTime;
 
-    void Start()
+    private void Start()
     {
         skeletonAnimation = GetComponent<SkeletonAnimation>();
         rigidBody = GetComponent<Rigidbody>();
         breathParticles = PlaygroundC.GetParticles(0);
 
         //SkeletonUtility skelut = GetComponent<SkeletonUtility>();
-        skeletonAnimation.skeleton.slots.ForEach(sl=> {sl.SetColor(Tint);});
+        skeletonAnimation.skeleton.slots.ForEach(sl => { sl.SetColor(Tint); });
         prevTint = Tint;
+
+        skeletonAnimation.state.Event += State_Event;
 
         collider = transform.FindChild("Collider");
 
@@ -77,6 +83,23 @@ public class Kaiju : MonoBehaviour
         handTransform = transform.Find("SkeletonUtility-Root/root/Hip/body/upperarm1/forearm1/hand1");
 
         Health = BaseHealth;
+
+        foreach (AudioSource source in GetComponents<AudioSource>())
+        {
+            audioSources.Add(source.clip.name, source);
+        }
+
+        audioSources["Fire"].Play();
+        audioSources["Fire"].Pause();
+    }
+
+    private void State_Event(Spine.AnimationState state, int trackIndex, Spine.Event e)
+    {
+        if (e.Data.Name == "Footstep")
+        {
+            audioSources["Kaiju_FootStep"].pitch = Random.Range(0.9f, 1.1f);
+            audioSources["Kaiju_FootStep"].Play();
+        }
     }
 
     // Update is called once per frame
@@ -97,10 +120,22 @@ public class Kaiju : MonoBehaviour
         {
             Dead = true;
             SetAnimation("Dead", false);
+
+            rigidBody.useGravity = true;
+            rigidBody.constraints = RigidbodyConstraints.FreezeRotation;
+            gameObject.layer = 9;
+            collider.gameObject.layer = 9;
         }
 
         if (!Dead)
         {
+            if (Health <= 0)
+            {
+                
+                audioSources["Kaiju_Roar"].pitch = 0.7f;
+                audioSources["Kaiju_Roar"].Play();
+            }
+
             if (!isClimbing && !isPickingUp && !isThrowing)
             {
                 rigidBody.useGravity = true;
@@ -152,7 +187,7 @@ public class Kaiju : MonoBehaviour
                     rigidBody.velocity = new Vector3(0, rigidBody.velocity.y, 0);
                 }
 
-                if (CanClimb && Input.GetButtonDown("Climb"))
+                if (CanClimb && Input.GetButton("Climb"))
                 {
                     isClimbing = true;
                     gameObject.layer = 11;
@@ -205,7 +240,7 @@ public class Kaiju : MonoBehaviour
                 collider.gameObject.layer = 11;
                 maxSpeed = 2f;
 
-                if (Input.GetButtonDown("Climb"))
+                if (CanClimb && Input.GetButton("Climb"))
                 {
                     if (climbingSkyscraperSection != null)
                     {
@@ -219,19 +254,21 @@ public class Kaiju : MonoBehaviour
                         transform.position =
                             new Vector3(climbingSkyscraperSection.transform.parent.position.x + (0.9f*-dir),
                                 transform.position.y, climbingSkyscraperSection.transform.position.z - 0.1f);
-                        rigidBody.AddForce(0f, climbVelocity, 0f, ForceMode.Acceleration);
+                        //rigidBody.AddForce(0f, climbVelocity, 0f, ForceMode.Acceleration);
+                        transform.position += new Vector3(0f,climbVelocity,0f);
                         climbingSkyscraperSection.GetComponent<SkyscraperSection>().ClimbedOn();
-
+                        SetAnimation("Climb", true);
                     }
 
                 }
                 else
                 {
                     rigidBody.AddForce(0f, climbGravity + (-(transform.position.y*4f)), 0f, ForceMode.Acceleration);
+                    if (!isPickingUp && !isThrowing) SetAnimation(idleAnimation, true);
                 }
 
-                if (isClimbing && rigidBody.velocity.y > 0f) SetAnimation("Climb", true);
-                else if (!isPickingUp && !isThrowing) SetAnimation(idleAnimation, true);
+                //if (isClimbing && rigidBody.velocity.y > 0f) SetAnimation("Climb", true);
+                
             }
 
             if (rigidBody.velocity.magnitude > maxSpeed)
@@ -272,9 +309,20 @@ public class Kaiju : MonoBehaviour
 
             if (Input.GetButton("Breathe"))
             {
+                audioSources["Fire"].UnPause();
                 for (int i = 0; i < 50; i++)
                     breathParticles.Emit(BreathTransform.position,
                         new Vector3(Random.Range(8f, 15f)*faceDir, Random.Range(-5.4f, -5.6f), 0f));
+            }
+            else audioSources["Fire"].Pause();
+
+
+            roarTime -= Time.deltaTime;
+            if (roarTime <= 0f)
+            {
+                roarTime = Random.Range(2f, 10f);
+                audioSources["Kaiju_Roar"].pitch = Random.Range(0.9f, 1.1f);
+                audioSources["Kaiju_Roar"].Play();
             }
         }
 
@@ -354,6 +402,8 @@ public class Kaiju : MonoBehaviour
 
     public void Stomp()
     {
+        audioSources["Kaiju_Stomp"].Play();
+
         Collider[] colliders = Physics.OverlapSphere(transform.position, 3f);
 
         foreach (Collider hit in colliders)
@@ -390,4 +440,6 @@ public class Kaiju : MonoBehaviour
             isOnGround = false;
         }
     }
+
+    
 }

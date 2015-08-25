@@ -664,7 +664,8 @@ AudioSource:
   m_GameObject: {fileID: 100030}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24345020, guid: e5aef68acecb8d44c8fa5b2931653973,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 438557f29eadbf84bbbb834199125132, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -856,6 +857,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b7849c6109baae4b98b4dc625d4181f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explodeSource: {fileID: 8200000}
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -14052,6 +14054,19 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: explodeSource
+      value: 
+      objectReference: {fileID: 8200000}
+    - target: {fileID: 0}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24345020, guid: e5aef68acecb8d44c8fa5b2931653973,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100030}

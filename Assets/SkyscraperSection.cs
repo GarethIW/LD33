@@ -194,7 +194,7 @@ public class SkyscraperSection : MonoBehaviour
         if (this == null) return;
         if (particle.collisionCollider.gameObject == this.gameObject)
         {
-            Health -= 0.00001f;
+            Health -= 0.0005f;
             if (Random.Range(0, 500) == 0)
             {
                 var fire = FireManager.Instance.GetOne("Fire");
@@ -213,7 +213,7 @@ public class SkyscraperSection : MonoBehaviour
 
     public void ClimbedOn()
     {
-        Health -= 0.1f;
+        Health -= 0.05f;
         if (Random.Range(0, 5) == 0)
         {
             var fire = FireManager.Instance.GetOne("Fire");

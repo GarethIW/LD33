@@ -143,7 +143,7 @@ public abstract class Enemy : MonoBehaviour
             //{
             //    getExploringPoint();
             //}
-            playAudio(painAudio);
+            //playAudio(painAudio);
             //Debug.Log("Update() Health" + Health);
         }
 
@@ -333,14 +333,14 @@ public abstract class Enemy : MonoBehaviour
 
     private void playDeathScream()
     {
-        Debug.Log("playDeathScream() Playing death scream");
-        GameObject dap = EnemyManager.Instance.GetOne("DroppableAudioPlayer");
-        dap.transform.position = transform.position;
-        AudioSource dropSource= GetComponent<AudioSource>();
-        dropSource.clip = deathClip;
+        //Debug.Log("playDeathScream() Playing death scream");
+        //GameObject dap = EnemyManager.Instance.GetOne("DroppableAudioPlayer");
+        //dap.transform.position = transform.position;
+        //AudioSource dropSource= GetComponent<AudioSource>();
+        //dropSource.clip = deathClip;
      
-        dap.SetActive(true);
-        dropSource.Play();
+        //dap.SetActive(true);
+        //dropSource.Play();
 
     }
 }

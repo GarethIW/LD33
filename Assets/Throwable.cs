@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Throwable : MonoBehaviour
 {
@@ -8,10 +9,17 @@ public class Throwable : MonoBehaviour
     public float ThrowForce;
     public bool isBeingThrown;
 
+    Dictionary<string, AudioSource> audioSources = new Dictionary<string, AudioSource>();
+
     // Use this for initialization
     void Start()
     {
         StartScale = transform.localScale;
+
+        foreach (AudioSource source in GetComponents<AudioSource>())
+        {
+            audioSources.Add(source.clip.name, source);
+        }
     }
 
     // Update is called once per frame
@@ -75,6 +83,8 @@ public class Throwable : MonoBehaviour
             if (gameObject.name.Contains("Car"))
                 GameManager.Instance.DamageCost += 100;
 
+            audioSources["Smash"].pitch = Random.Range(0.9f, 1.1f);
+            audioSources["Smash"].Play();
 
         }
     }
