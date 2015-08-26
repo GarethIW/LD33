@@ -24,23 +24,16 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _ChromaticAberrationTex
-        second:
-          m_Texture: {fileID: 2800000, guid: 739cbb7d52294184593ce6b7676a510b, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
           name: _NoiseTex
         second:
           m_Texture: {fileID: 2800000, guid: df0ffcc7ed4d822408d84a34b9d048e0, type: 3}
           m_Scale: {x: 1, y: 1}
-          m_Offset: {x: .0793714523, y: .752514362}
+          m_Offset: {x: .0271581411, y: .740023613}
       data:
         first:
-          name: _StaticMask
+          name: _ChromaticAberrationTex
         second:
-          m_Texture: {fileID: 2800000, guid: 43a04c1efe2bb194e936e6b500cc884d, type: 3}
+          m_Texture: {fileID: 2800000, guid: 739cbb7d52294184593ce6b7676a510b, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -50,11 +43,22 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _StaticMask
+        second:
+          m_Texture: {fileID: 2800000, guid: 43a04c1efe2bb194e936e6b500cc884d, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
           name: _ScreenHorizontal
         second: 1
+      data:
+        first:
+          name: _Mobile
+        second: 0
       data:
         first:
           name: _Saturation
@@ -66,13 +70,9 @@ Material:
       data:
         first:
           name: _NoiseMagnetude
-        second: 1
+        second: .0500000156
       data:
         first:
           name: _StaticMagnetude
-        second: 1
-      data:
-        first:
-          name: _Mobile
-        second: 0
+        second: .00400000205
     m_Colors: {}

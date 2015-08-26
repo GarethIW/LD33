@@ -98,7 +98,7 @@ MonoBehaviour:
   KnockbackDamage: 5
   Health: 10
   BaseHealth: 10
-  ScorePoints: 10
+  ScorePoints: 500
   FireRate: .150000006
   MovementCoolDown: .5
   coolDownTimer: 0
@@ -224,6 +224,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: DamageValue
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ScorePoints
+      value: 500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

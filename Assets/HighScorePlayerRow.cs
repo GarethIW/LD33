@@ -12,15 +12,18 @@ public class HighScorePlayerRow : MonoBehaviour {
     public Text ScoreText;
     public Text PositionText;
     public Text UserNameText;
-
    
 
 
-    public void SetScores(string playerName, string score, string position)
+    public void SetScores(string playerName, string score, string position, bool isPlayer)
     {
         ScoreText.text = score;
         PositionText.text = position;
         UserNameText.text = playerName;
+
+        ScoreText.color = isPlayer ? Color.red:Color.white;
+        PositionText.color = isPlayer ? Color.red : Color.white;
+        UserNameText.color = isPlayer ? Color.red : Color.white;
     }
 
 }
